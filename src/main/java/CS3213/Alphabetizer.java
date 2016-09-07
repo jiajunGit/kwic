@@ -11,17 +11,17 @@ public class Alphabetizer {
     private List<String> _lines;
 
     public Alphabetizer() {
-        this._lines = new ArrayList<String>();
+        _lines = new ArrayList<String>();
     }
 
     public void addLines(String[] lines) {
         for (String str : lines) {
-            this._lines.add(str);
+            _lines.add(str);
         }
     }
 
     public String[] getSortedLines() {
-        Collections.sort(this._lines);
-        return this._lines.toArray(new String[this._lines.size()]);
+        Collections.sort(_lines);
+        return _lines.toArray(new String[_lines.size()]);
     }
 }
