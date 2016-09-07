@@ -2,7 +2,9 @@ package CS3213;
 
 public class RequiredWords {
 
+	private RequiredWords() {}
+	
 	public static RequiredWords create() {
-    	return null;
+    	return new RequiredWords();
     }
 }
