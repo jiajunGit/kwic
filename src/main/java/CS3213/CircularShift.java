@@ -2,7 +2,9 @@ package CS3213;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -24,7 +26,24 @@ public class CircularShift {
     }
 
     public List<String> getShifts( String line ) {
-    	return null;
+    	
+    	line = line.toLowerCase();
+    	String[] words = capitalizeWordsNotIgnoredInLine(line.split(DELIMITER));
+    	
+    	LinkedList<Integer> filteredShifts = new LinkedList<Integer>();
+    	for( int i = 0, length = words.length; i < length; ++i ){
+    		if( !isShiftStartingWithIgnoredWord(words, i) ){
+    			filteredShifts.add(i);
+    		}
+    	}
+    	
+    	ArrayList<String> resultList = new ArrayList<String>(filteredShifts.size());
+    	Iterator<Integer> itr = filteredShifts.iterator();
+    	while( itr.hasNext() ){
+    		resultList.add(getShiftedLine( itr.next(), words ));
+    	}
+        
+        return resultList;
     }
     
     public String[] getCircularShifts() {
@@ -62,6 +81,10 @@ public class CircularShift {
         return builder.toString();
     }
 
+    private boolean isShiftStartingWithIgnoredWord( String[] line, int firstWordIndex ) {
+    	return _wordsToIgnore.isWordIgnored(line[firstWordIndex]);
+    }
+    
     private String[] getShiftsWithoutIgnoredWordLeading(String[] shifts) {
         List<String> shiftList = new ArrayList<String>(Arrays.asList(shifts));
 
@@ -79,6 +102,25 @@ public class CircularShift {
         return this._wordsToIgnore.isWordIgnored(line.split(DELIMITER)[0]);
     }
 
+    private String[] capitalizeWordsNotIgnoredInLine(String[] line) {
+    	
+    	ArrayList<String> newLine = new ArrayList<String>(line.length);
+    	String word;
+    	for( int i = 0, size = line.length; i < size; ++i ) {
+    		
+    		word = line[i];
+    		if (_wordsToIgnore.isWordIgnored(word)) {
+    			newLine.add(word);
+            } else if (word.trim().isEmpty()) {
+                continue;
+            } else {
+            	newLine.add( Character.toUpperCase(word.charAt(0)) + (word.substring(1)) );
+            }
+    	}
+    	
+    	return newLine.toArray(new String[newLine.size()]);
+    }
+    
     private String capitalizeWordsNotIgnoredInShift(String shift) {
         String[] words = shift.split(DELIMITER);
         StringBuilder builder = new StringBuilder();
