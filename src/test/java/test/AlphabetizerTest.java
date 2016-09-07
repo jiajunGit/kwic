@@ -28,4 +28,11 @@ public class AlphabetizerTest {
         assertEquals("test a line", output[2]);
         assertEquals("this is test", output[3]);
     }
+    
+    @Test
+    public void testCreateOutput() {
+    	
+    	Alphabetizer alphabetizer = Alphabetizer.create();
+    	assertTrue(alphabetizer != null);
+    }
 }
