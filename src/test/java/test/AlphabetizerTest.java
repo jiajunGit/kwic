@@ -4,6 +4,8 @@ import CS3213.Alphabetizer;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 public class AlphabetizerTest {
@@ -12,7 +14,12 @@ public class AlphabetizerTest {
     public void testGetSortedLines() throws Exception {
         Alphabetizer alphabetizer = new Alphabetizer();
 
-        String[] lines = {"test a line", "a simple line", "this is test", "easy task"};
+        ArrayList<String> lines = new ArrayList<String>();
+        lines.add("test a line");
+        lines.add("a simple line");
+        lines.add("this is test");
+        lines.add("easy task");
+    
         alphabetizer.addLines(lines);
         String[] output = alphabetizer.getSortedLines();
         assertTrue(output.length == 4);

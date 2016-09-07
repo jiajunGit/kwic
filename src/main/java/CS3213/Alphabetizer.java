@@ -14,7 +14,7 @@ public class Alphabetizer {
         this._lines = new ArrayList<String>();
     }
 
-    public void addLines(String[] lines) {
+    public void addLines(List<String> lines) {
         for (String str : lines) {
             this._lines.add(str);
         }

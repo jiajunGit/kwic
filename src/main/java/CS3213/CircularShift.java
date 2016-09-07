@@ -1,8 +1,6 @@
 package CS3213;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -12,19 +10,16 @@ import java.util.List;
  */
 public class CircularShift {
     public static String DELIMITER = " ";
-    private String _line;
     private WordsToIgnore _wordsToIgnore;
 
-    /**
-     * input should not be null
-     * @param line
-     */
-    public CircularShift(String line) {
-        assert(line != null);
-        this._line = line.toLowerCase();
-        this._wordsToIgnore = WordsToIgnore.getWordsToIgnore();
+    private CircularShift() {
+    	_wordsToIgnore = WordsToIgnore.getWordsToIgnore();
     }
-
+    
+    public static CircularShift create() {
+    	return new CircularShift();
+    }
+    
     public List<String> getShifts( String line ) {
     	
     	assert(line != null);
@@ -46,23 +41,6 @@ public class CircularShift {
     	}
         
         return resultList;
-    }
-    
-    public String[] getCircularShifts() {
-        String[] words = this._line.split(DELIMITER);
-        String[] shifts = new String[words.length];
-        shifts[0] = this._line;
-
-        for (int i=1;i<words.length;i++) {
-            shifts[i] = this.getShiftedLine(i, words);
-        }
-
-        String[] filteredShifts = getShiftsWithoutIgnoredWordLeading(shifts);
-        for (int i=0;i<filteredShifts.length;i++) {
-            filteredShifts[i] = capitalizeWordsNotIgnoredInShift(filteredShifts[i]);
-        }
-
-        return filteredShifts;
     }
 
     private String getShiftedLine(int index, String[] words) {
@@ -86,23 +64,6 @@ public class CircularShift {
     private boolean isShiftStartingWithIgnoredWord( String[] line, int firstWordIndex ) {
     	return _wordsToIgnore.isWordIgnored(line[firstWordIndex]);
     }
-    
-    private String[] getShiftsWithoutIgnoredWordLeading(String[] shifts) {
-        List<String> shiftList = new ArrayList<String>(Arrays.asList(shifts));
-
-        Iterator<String> iter = shiftList.iterator();
-        while (iter.hasNext()) {
-            if (isShiftStartingWithIgnoredWord(iter.next())) {
-                iter.remove();
-            }
-        }
-
-        return shiftList.toArray(new String[shiftList.size()]);
-    }
-
-    private boolean isShiftStartingWithIgnoredWord(String line) {
-        return this._wordsToIgnore.isWordIgnored(line.split(DELIMITER)[0]);
-    }
 
     private String[] capitalizeWordsNotIgnoredInLine(String[] line) {
     	
@@ -121,26 +82,5 @@ public class CircularShift {
     	}
     	
     	return newLine.toArray(new String[newLine.size()]);
-    }
-    
-    private String capitalizeWordsNotIgnoredInShift(String shift) {
-        String[] words = shift.split(DELIMITER);
-        StringBuilder builder = new StringBuilder();
-
-        for (String str : words) {
-            if (this._wordsToIgnore.isWordIgnored(str)) {
-                builder.append(str);
-            } else if (str.trim().isEmpty()) {
-                continue;
-            } else {
-                builder.append(Character.toUpperCase(str.charAt(0))).append(str.substring(1));
-            }
-            builder.append(DELIMITER);
-        }
-        if (builder.length() > 0) {
-            builder.deleteCharAt(builder.length() - 1);
-        }
-
-        return builder.toString();
     }
 }
