@@ -27,7 +27,7 @@ public class CircularShiftTest {
     }
     
     @Test
-    public void testGetShifts() {
+    public void testGetShiftsOneWord() {
     	
     	CircularShift circularShift = new CircularShift("");
     	List<String> shifts = circularShift.getShifts("shift");
