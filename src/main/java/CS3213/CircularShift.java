@@ -27,6 +27,8 @@ public class CircularShift {
 
     public List<String> getShifts( String line ) {
     	
+    	assert(line != null);
+    	
     	line = line.toLowerCase();
     	String[] words = capitalizeWordsNotIgnoredInLine(line.split(DELIMITER));
     	
