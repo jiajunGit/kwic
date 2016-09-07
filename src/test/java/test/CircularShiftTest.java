@@ -37,7 +37,7 @@ public class CircularShiftTest {
         assertTrue(testSet.contains("Shift Test This Circular"));
     }
 
-    @Test(expected=NullPointerException.class)
+    @Test(expected=AssertionError.class)
     public void testGetShiftsNullLine() {
 
         CircularShift circularShift = CircularShift.create();
