@@ -10,14 +10,15 @@ import java.util.List;
  */
 public class CircularShift {
     private static final String DELIMITER = " ";
-    private WordsToIgnore _wordsToIgnore;
+    private CheckableSpecialWordsCollection _wordsToIgnore;
 
-    private CircularShift() {
-        _wordsToIgnore = WordsToIgnore.getWordsToIgnore();
+    private CircularShift( CheckableSpecialWordsCollection wordsToIgnore ) {
+    	assert( wordsToIgnore != null );
+        _wordsToIgnore = wordsToIgnore;
     }
     
-    public static CircularShift create() {
-        return new CircularShift();
+    public static CircularShift create( WordsToIgnore wordsToIgnore ) {
+        return new CircularShift(wordsToIgnore);
     }
     
     public List<String> getShifts( String line ) {
@@ -62,7 +63,7 @@ public class CircularShift {
     }
 
     private boolean isShiftStartingWithIgnoredWord( String[] line, int firstWordIndex ) {
-        return _wordsToIgnore.isWordIgnored(line[firstWordIndex]);
+        return _wordsToIgnore.contains(line[firstWordIndex]);
     }
 
     private String[] capitalizeWordsNotIgnoredInLine(String[] line) {
@@ -72,7 +73,7 @@ public class CircularShift {
         for( int i = 0, size = line.length; i < size; ++i ) {
             
             word = line[i];
-            if (_wordsToIgnore.isWordIgnored(word)) {
+            if (_wordsToIgnore.contains(word)) {
                 newLine.add(word);
             } else if (word.trim().isEmpty()) {
                 continue;

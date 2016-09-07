@@ -5,6 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import CS3213.CircularShift;
+import CS3213.WordsToIgnore;
 
 import java.util.HashSet;
 import java.util.List;
@@ -14,7 +15,8 @@ public class CircularShiftTest {
     @Test
     public void testGetShiftsOneWord() {
 
-        CircularShift circularShift = CircularShift.create();
+    	WordsToIgnore wordsToIgnore = WordsToIgnore.create();
+        CircularShift circularShift = CircularShift.create(wordsToIgnore);
         List<String> shifts = circularShift.getShifts("shift");
         assertTrue( shifts != null );
         assertTrue( shifts.size() == 1 );
@@ -24,7 +26,8 @@ public class CircularShiftTest {
     @Test
     public void testGetShiftsMultiWord() {
 
-        CircularShift circularShift = CircularShift.create();
+    	WordsToIgnore wordsToIgnore = WordsToIgnore.create();
+        CircularShift circularShift = CircularShift.create(wordsToIgnore);
         List<String> shifts = circularShift.getShifts("tEst this Circular shIft");
         HashSet<String> testSet = new HashSet<String>();
         for (String str : shifts) {
@@ -40,13 +43,15 @@ public class CircularShiftTest {
     @Test(expected=AssertionError.class)
     public void testGetShiftsNullLine() {
 
-        CircularShift circularShift = CircularShift.create();
+    	WordsToIgnore wordsToIgnore = WordsToIgnore.create();
+        CircularShift circularShift = CircularShift.create(wordsToIgnore);
         List<String> shifts = circularShift.getShifts(null);
     }
 
     public void testGetShiftsEmptyLine() {
 
-        CircularShift circularShift = CircularShift.create();
+    	WordsToIgnore wordsToIgnore = WordsToIgnore.create();
+        CircularShift circularShift = CircularShift.create(wordsToIgnore);
         List<String> shifts = circularShift.getShifts("");
         assertTrue( shifts != null );
         assertTrue( shifts.size() == 0 );
@@ -55,7 +60,9 @@ public class CircularShiftTest {
     // Testing shifts for words with letters and numbers
     @Test
     public void testLetterNumberCircularShifts() throws Exception {
-        CircularShift circularShift = CircularShift.create();
+    	
+    	WordsToIgnore wordsToIgnore = WordsToIgnore.create();
+        CircularShift circularShift = CircularShift.create(wordsToIgnore);
         List<String> shifts = circularShift.getShifts("nuMb3Rs r g00d n0t evIl");
         HashSet<String> testSet = new HashSet<String>();
         for (String str : shifts) {

@@ -23,14 +23,14 @@ public class Main {
 
         System.out.println("Enter words to ignore (terminate input by entering empty line) ");
         String inputWordToIgnore = sc.nextLine();
-        WordsToIgnore wordsToIgnore = WordsToIgnore.getWordsToIgnore();
+        WordsToIgnore wordsToIgnore = WordsToIgnore.create();
         while (!inputWordToIgnore.isEmpty()) {
             wordsToIgnore.addWordToIgnore(inputWordToIgnore);
             inputWordToIgnore = sc.nextLine();
         }
 
         Alphabetizer alphabetizer = Alphabetizer.create();
-        CircularShift shifter = CircularShift.create();
+        CircularShift shifter = CircularShift.create(wordsToIgnore);
         for (String str : inputs) {
             alphabetizer.addLines(shifter.getShifts(str));
         }

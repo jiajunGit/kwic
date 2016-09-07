@@ -5,11 +5,15 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import CS3213.RequiredWords;
+
 public class RequiredWordsTest {
 
     @Test
-    public void testIsWordRequired() throws Exception {
-       // TODO
+    public void testCreate() {
+       
+    	RequiredWords requiredWords = RequiredWords.create();
+    	assertTrue( requiredWords != null );
     }
     
     // Existence
