@@ -9,7 +9,7 @@ import java.util.List;
  * This class is to generate a list of all circular shifts based on the string given.
  */
 public class CircularShift {
-    public static String DELIMITER = " ";
+    private static final String DELIMITER = " ";
     private WordsToIgnore _wordsToIgnore;
 
     private CircularShift() {
