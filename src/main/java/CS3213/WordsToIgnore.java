@@ -10,7 +10,7 @@ public class WordsToIgnore {
     }
 
     public static WordsToIgnore create() {
-    	return null;
+    	return new WordsToIgnore();
     }
     
     public static WordsToIgnore getWordsToIgnore() {
