@@ -4,17 +4,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Created by junchao on 8/23/2014.
- */
 public class Alphabetizer {
     private List<String> _lines;
 
-    public Alphabetizer() {
+    private Alphabetizer() {
         _lines = new ArrayList<String>();
     }
 
-    public void addLines(String[] lines) {
+    public static Alphabetizer create() {
+        return new Alphabetizer();
+    }
+    
+    public void addLines(List<String> lines) {
         for (String str : lines) {
             _lines.add(str);
         }

@@ -29,10 +29,10 @@ public class Main {
             inputWordToIgnore = sc.nextLine();
         }
 
-        Alphabetizer alphabetizer = new Alphabetizer();
+        Alphabetizer alphabetizer = Alphabetizer.create();
+        CircularShift shifter = CircularShift.create();
         for (String str : inputs) {
-            CircularShift shifter = new CircularShift(str);
-            alphabetizer.addLines(shifter.getCircularShifts());
+            alphabetizer.addLines(shifter.getShifts(str));
         }
 
         String[] result = alphabetizer.getSortedLines();
