@@ -35,4 +35,11 @@ public class CircularShiftTest {
     	assertTrue( shifts.size() == 1 );
     	assertTrue( shifts.contains("Shift") );
     }
+    
+    @Test(expected=AssertionError.class)
+    public void testGetShiftsNullLine() {
+    	
+    	CircularShift circularShift = new CircularShift("");
+    	List<String> shifts = circularShift.getShifts(null);
+    }
 }
