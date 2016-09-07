@@ -2,9 +2,6 @@ package CS3213;
 
 import java.util.HashSet;
 
-/**
- * Created by junchao on 8/23/2014.
- */
 public class WordsToIgnore {
     private HashSet<String> _wordsToIgnore;
     private static WordsToIgnore _instatnce;
@@ -12,6 +9,10 @@ public class WordsToIgnore {
         this._wordsToIgnore = new HashSet<String>();
     }
 
+    public static WordsToIgnore create() {
+    	return null;
+    }
+    
     public static WordsToIgnore getWordsToIgnore() {
         if (_instatnce == null) {
             _instatnce = new WordsToIgnore();

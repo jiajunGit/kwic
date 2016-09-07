@@ -35,7 +35,7 @@ public class Main {
             alphabetizer.addLines(shifter.getShifts(str));
         }
 
-        String[] result = alphabetizer.getSortedLines();
+        List<String> result = alphabetizer.getSortedLines();
         StringBuilder builder = new StringBuilder();
         String separator = System.lineSeparator();
         for (String str : result) {

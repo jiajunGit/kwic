@@ -21,8 +21,8 @@ public class Alphabetizer {
         }
     }
 
-    public String[] getSortedLines() {
+    public List<String> getSortedLines() {
         Collections.sort(_lines);
-        return _lines.toArray(new String[_lines.size()]);
+        return Collections.unmodifiableList(_lines);
     }
 }

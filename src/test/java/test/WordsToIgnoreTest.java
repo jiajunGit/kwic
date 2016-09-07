@@ -32,4 +32,11 @@ public class WordsToIgnoreTest {
         assertTrue(wordsToIgnore.isWordIgnored("after"));
         assertFalse(wordsToIgnore.isWordIgnored("before"));
     }
+    
+    @Test
+    public void TestCreateNonNullOutput() {
+    	
+    	WordsToIgnore wordsToIgnore = WordsToIgnore.create();
+    	assertTrue( wordsToIgnore != null );
+    }
 }
