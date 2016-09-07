@@ -12,7 +12,7 @@ public class AlphabetizerTest {
 
     @Test
     public void testGetSortedLines() throws Exception {
-        Alphabetizer alphabetizer = new Alphabetizer();
+        Alphabetizer alphabetizer = Alphabetizer.create();
 
         ArrayList<String> lines = new ArrayList<String>();
         lines.add("test a line");

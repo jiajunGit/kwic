@@ -29,7 +29,7 @@ public class Main {
             inputWordToIgnore = sc.nextLine();
         }
 
-        Alphabetizer alphabetizer = new Alphabetizer();
+        Alphabetizer alphabetizer = Alphabetizer.create();
         CircularShift shifter = CircularShift.create();
         for (String str : inputs) {
             alphabetizer.addLines(shifter.getShifts(str));

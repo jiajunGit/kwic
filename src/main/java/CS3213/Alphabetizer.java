@@ -4,14 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Created by junchao on 8/23/2014.
- */
 public class Alphabetizer {
     private List<String> _lines;
 
-    public Alphabetizer() {
-        this._lines = new ArrayList<String>();
+    private Alphabetizer() {
+        _lines = new ArrayList<String>();
     }
 
     public static Alphabetizer create() {
@@ -20,12 +17,12 @@ public class Alphabetizer {
     
     public void addLines(List<String> lines) {
         for (String str : lines) {
-            this._lines.add(str);
+            _lines.add(str);
         }
     }
 
     public String[] getSortedLines() {
-        Collections.sort(this._lines);
-        return this._lines.toArray(new String[this._lines.size()]);
+        Collections.sort(_lines);
+        return _lines.toArray(new String[_lines.size()]);
     }
 }
