@@ -30,6 +30,74 @@ public class AlphabetizerTest {
         assertEquals("this is test", output.get(3));
     }
     
+    // See if alphabetical throughout or only first word
+    @Test
+    public void testAlphabeticalSort() throws Exception {
+        Alphabetizer alphabetizer = Alphabetizer.create();
+
+        ArrayList<String> lines = new ArrayList<String>();
+        lines.add("a duplicate line with minor differences");
+        lines.add("a duplicate line with major differences");
+        lines.add("a duplicate line without similarities");
+        lines.add("a duplicate line with similarities");
+        
+        alphabetizer.addLines(lines);
+        List<String> output = alphabetizer.getSortedLines();
+        assertTrue(output.size() == 4);
+        
+        assertEquals("a duplicate line with major differences", output.get(0));
+        assertEquals("a duplicate line with minor differences", output.get(1));
+        assertEquals("a duplicate line with similarities", output.get(2));
+        assertEquals("a duplicate line without similarities", output.get(3));
+    }
+    
+    // Number & Letter combinations sorting order
+    @Test
+    public void testAlphabeticalNumberLetter() throws Exception {
+        Alphabetizer alphabetizer = Alphabetizer.create();
+
+        ArrayList<String> lines = new ArrayList<String>();
+        lines.add("1sumplenumber");
+        lines.add("2complicatednumbers");
+        lines.add("lam3r");
+        lines.add("lamer");
+        lines.add("placeholder");
+        alphabetizer.addLines(lines);
+        List<String> output = alphabetizer.getSortedLines();
+        assertTrue(output.size() == 5);
+
+        assertEquals("1sumplenumber", output.get(0));
+        assertEquals("2complicatednumbers", output.get(1));
+        assertEquals("lam3r", output.get(2));
+        assertEquals("lamer", output.get(3));
+        assertEquals("placeholder", output.get(4));
+        
+    }
+    
+    // Test if special characters are sorted by ASCII values
+    @Test
+    public void testAlphabeticalSpecial() throws Exception {
+        Alphabetizer alphabetizer = Alphabetizer.create();
+
+        ArrayList<String> lines = new ArrayList<String>();
+        lines.add("");
+        lines.add(",,,!!");
+        lines.add(",,,% ");
+        lines.add(" ");
+        lines.add("??@@");
+        lines.add(":;");
+        alphabetizer.addLines(lines);
+        List<String> output = alphabetizer.getSortedLines();
+        assertTrue(output.size() == 6);
+        
+        assertEquals("", output.get(0));
+        assertEquals(" ", output.get(1));
+        assertEquals(",,,!!", output.get(2));
+        assertEquals(",,,% ", output.get(3));
+        assertEquals(":;", output.get(4));
+        assertEquals("??@@", output.get(5));
+    }
+    
     @Test
     public void testCreateOutput() {
     	

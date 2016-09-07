@@ -12,7 +12,7 @@ public class Alphabetizer {
     }
 
     public static Alphabetizer create() {
-    	return new Alphabetizer();
+        return new Alphabetizer();
     }
     
     public void addLines(List<String> lines) {

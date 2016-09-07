@@ -10,23 +10,23 @@ import java.util.HashSet;
 import java.util.List;
 
 public class CircularShiftTest {
-    
+
     @Test
     public void testGetShiftsOneWord() {
-    	
-    	CircularShift circularShift = CircularShift.create();
-    	List<String> shifts = circularShift.getShifts("shift");
-    	assertTrue( shifts != null );
-    	assertTrue( shifts.size() == 1 );
-    	assertTrue( shifts.contains("Shift") );
+
+        CircularShift circularShift = CircularShift.create();
+        List<String> shifts = circularShift.getShifts("shift");
+        assertTrue( shifts != null );
+        assertTrue( shifts.size() == 1 );
+        assertTrue( shifts.contains("Shift") );
     }
-    
+
     @Test
     public void testGetShiftsMultiWord() {
-    	
-    	CircularShift circularShift = CircularShift.create();
-    	List<String> shifts = circularShift.getShifts("tEst this Circular shIft");
-    	HashSet<String> testSet = new HashSet<String>();
+
+        CircularShift circularShift = CircularShift.create();
+        List<String> shifts = circularShift.getShifts("tEst this Circular shIft");
+        HashSet<String> testSet = new HashSet<String>();
         for (String str : shifts) {
             testSet.add(str);
         }
@@ -36,19 +36,39 @@ public class CircularShiftTest {
         assertTrue(testSet.contains("Circular Shift Test This"));
         assertTrue(testSet.contains("Shift Test This Circular"));
     }
-    
+
     @Test(expected=AssertionError.class)
     public void testGetShiftsNullLine() {
-    	
-    	CircularShift circularShift = CircularShift.create();
-    	List<String> shifts = circularShift.getShifts(null);
+
+        CircularShift circularShift = CircularShift.create();
+        List<String> shifts = circularShift.getShifts(null);
     }
-    
+
     public void testGetShiftsEmptyLine() {
-    	
-    	CircularShift circularShift =CircularShift.create();
-    	List<String> shifts = circularShift.getShifts("");
-    	assertTrue( shifts != null );
-    	assertTrue( shifts.size() == 0 );
+
+        CircularShift circularShift = CircularShift.create();
+        List<String> shifts = circularShift.getShifts("");
+        assertTrue( shifts != null );
+        assertTrue( shifts.size() == 0 );
     }
+
+    // Testing shifts for words with letters and numbers
+    @Test
+    public void testLetterNumberCircularShifts() throws Exception {
+        CircularShift circularShift = CircularShift.create();
+        List<String> shifts = circularShift.getShifts("nuMb3Rs r g00d n0t evIl");
+        HashSet<String> testSet = new HashSet<String>();
+        for (String str : shifts) {
+            testSet.add(str);
+        }
+        assertTrue(testSet.size() == 5);
+
+        assertTrue(testSet.contains("Numb3rs R G00d N0t Evil"));
+        assertTrue(testSet.contains("R G00d N0t Evil Numb3rs"));
+        assertTrue(testSet.contains("G00d N0t Evil Numb3rs R"));
+        assertTrue(testSet.contains("N0t Evil Numb3rs R G00d"));
+        assertTrue(testSet.contains("Evil Numb3rs R G00d N0t"));
+
+    }
+
 }
