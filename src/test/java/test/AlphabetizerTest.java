@@ -1,9 +1,10 @@
 package test;
 
 import CS3213.Alphabetizer;
-import org.junit.Test;
 
 import static org.junit.Assert.*;
+
+import org.junit.Test;
 
 public class AlphabetizerTest {
 

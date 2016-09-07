@@ -23,6 +23,10 @@ public class CircularShift {
         this._wordsToIgnore = WordsToIgnore.getWordsToIgnore();
     }
 
+    public List<String> getShifts( String line ) {
+    	return null;
+    }
+    
     public String[] getCircularShifts() {
         String[] words = this._line.split(DELIMITER);
         String[] shifts = new String[words.length];
