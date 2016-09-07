@@ -15,7 +15,7 @@ public class Alphabetizer {
     }
 
     public static Alphabetizer create() {
-    	return null;
+    	return new Alphabetizer();
     }
     
     public void addLines(List<String> lines) {
