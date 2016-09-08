@@ -37,6 +37,16 @@ public class RequiredWordsCircularShiftTest {
 	}
 	
 	@Test(expected=AssertionError.class)
+	public void testGetShiftsForNullWords() {
+		
+		RequiredWords requiredWords = RequiredWords.create();
+		requiredWords.addWord("green");
+		ReadableWordsCollection ignoredWords = WordsToIgnore.create();
+    	RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords, ignoredWords);
+    	shifter.getShifts(null);
+	}
+	
+	@Test(expected=AssertionError.class)
 	public void testGetShiftsWithoutRequiredWords() {
 		
 		ReadableWordsCollection requiredWords = RequiredWords.create();
