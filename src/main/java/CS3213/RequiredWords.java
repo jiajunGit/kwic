@@ -1,14 +1,20 @@
 package CS3213;
 
+import java.util.HashSet;
+
 public class RequiredWords {
 
-	private RequiredWords() {}
+	private HashSet<String> requiredWords;
+	
+	private RequiredWords() {
+		requiredWords = new HashSet<String>();
+	}
 	
 	public static RequiredWords create() {
     	return new RequiredWords();
     }
 	
 	public boolean addRequiredWord( String word ) {
-		return false;
+		return requiredWords.add(word);
 	}
 }
