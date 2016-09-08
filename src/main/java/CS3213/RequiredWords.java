@@ -15,7 +15,7 @@ public class RequiredWords {
     }
 	
 	public boolean removeRequiredWord( String word ) {
-		return false;
+		return true;
 	}
 	
 	public boolean addRequiredWord( String word ) {
