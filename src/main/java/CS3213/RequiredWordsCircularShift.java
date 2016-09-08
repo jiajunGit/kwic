@@ -9,6 +9,7 @@ public class RequiredWordsCircularShift {
 	}
 	
 	public static RequiredWordsCircularShift create( CheckableSpecialWordsCollection requiredWords ) {
+		assert(requiredWords != null);
 		return new RequiredWordsCircularShift(requiredWords);
 	}
 	
