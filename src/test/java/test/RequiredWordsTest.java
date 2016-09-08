@@ -53,6 +53,15 @@ public class RequiredWordsTest {
     	assertFalse( requiredWords.removeRequiredWord("ExAmPLe") );
     }
     
+    @Test
+    public void testContainsAddedNormalWord() {
+    	
+    	RequiredWords requiredWords = RequiredWords.create();
+    	String word = "ExAmPLe";
+    	requiredWords.addRequiredWord(word);
+    	assertTrue( requiredWords.contains(word) );
+    }
+    
     // Existence
     // Read the input & store
     

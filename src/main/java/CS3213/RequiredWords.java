@@ -2,7 +2,7 @@ package CS3213;
 
 import java.util.HashSet;
 
-public class RequiredWords {
+public class RequiredWords implements CheckableSpecialWordsCollection {
 
 	private HashSet<String> requiredWords;
 	
@@ -21,5 +21,17 @@ public class RequiredWords {
 	public boolean addRequiredWord( String word ) {
 		assert(word != null);
 		return (!word.isEmpty() ? requiredWords.add(word) : false);
+	}
+	
+	public boolean contains( String word ) {
+		return false;
+	}
+	
+	public boolean isEmpty() {
+		return false;
+	}
+	
+	public int size() {
+		return 0;
 	}
 }
