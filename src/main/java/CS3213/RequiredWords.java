@@ -15,6 +15,7 @@ public class RequiredWords implements ReadableWordsCollection, ModifiableWordsCo
     }
 	
 	public boolean removeWord( String word ) {
+		assert(word != null);
 		return requiredWords.remove(word);
 	}
 	
