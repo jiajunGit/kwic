@@ -23,6 +23,13 @@ public class RequiredWordsTest {
     	assertTrue( requiredWords.addRequiredWord("ExAmPle") );
     }
     
+    @Test(expected=AssertionError.class)
+    public void testAddRequiredWordNullWord() {
+    	
+    	RequiredWords requiredWords = RequiredWords.create();
+    	requiredWords.addRequiredWord(null);
+    }
+    
     // Existence
     // Read the input & store
     
