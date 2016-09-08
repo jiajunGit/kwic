@@ -1,5 +1,6 @@
 package CS3213;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RequiredWordsCircularShift {
@@ -18,6 +19,10 @@ public class RequiredWordsCircularShift {
 	public List<String> getShifts( String line ) {
 		
 		assert(_requiredWords.isEmpty() == false);
-		return null;
+		
+		List<String> shifts = new ArrayList<String>();
+		shifts.add(line);
+		
+		return shifts;
 	}
 }
