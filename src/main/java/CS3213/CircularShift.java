@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * This class is to generate a list of all circular shifts based on the string given.
  */
-public class CircularShift {
+public class CircularShift implements AbstractShift {
     private static final String DELIMITER = " ";
     private CheckableSpecialWordsCollection _wordsToIgnore;
 

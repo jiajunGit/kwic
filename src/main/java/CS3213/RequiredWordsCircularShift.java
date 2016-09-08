@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-public class RequiredWordsCircularShift {
+public class RequiredWordsCircularShift implements AbstractShift {
 
 	private static final String DELIMITER = " ";
 	private CheckableSpecialWordsCollection _requiredWords;

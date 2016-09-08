@@ -26,7 +26,7 @@ public class RequiredWordsCircularShiftTest {
 	@Test(expected=AssertionError.class)
 	public void testCreateWithNullRequiredWords() {
 		CheckableSpecialWordsCollection ignoredWords = WordsToIgnore.create();
-		RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(null, ignoredWords);
+		RequiredWordsCircularShift.create(null, ignoredWords);
 	}
 	
 	@Test(expected=AssertionError.class)
