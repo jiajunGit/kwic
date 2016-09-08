@@ -50,4 +50,20 @@ public class ShiftFactoryTest {
 		AbstractShift shifter = shiftFactory.getShifter(ignoreWords, requiredWords);
 		assertTrue( shifter instanceof RequiredWordsCircularShift );
 	}
+	
+	@Test(expected=AssertionError.class)
+	public void testGetShifterWithNullIgnoreWords() {
+		
+		ShiftFactory shiftFactory = ShiftFactory.getInstance();
+		CheckableSpecialWordsCollection requiredWords = RequiredWords.create();
+		shiftFactory.getShifter(null, requiredWords);
+	}
+	
+	@Test(expected=AssertionError.class)
+	public void testGetShifterWithNullRequiredWords() {
+		
+		ShiftFactory shiftFactory = ShiftFactory.getInstance();
+		CheckableSpecialWordsCollection ignoreWords = WordsToIgnore.create();
+		shiftFactory.getShifter(ignoreWords, null);
+	}
 }
