@@ -25,6 +25,7 @@ public class CircularShift implements AbstractShift {
         
         assert(line != null);
         
+        line = line.toLowerCase();
         String[] words = line.split(DELIMITER);
         
         LinkedList<Integer> filteredShifts = new LinkedList<Integer>();
@@ -75,11 +76,11 @@ public class CircularShift implements AbstractShift {
             
             word = line[i];
             if (_wordsToIgnore.contains(word)) {
-                newLine.add(word.toLowerCase());
+            	newLine.add(word);
             } else if (word.trim().isEmpty()) {
                 continue;
             } else {
-                newLine.add( Character.toUpperCase(word.charAt(0)) + (word.toLowerCase().substring(1)) );
+            	newLine.add( Character.toUpperCase(word.charAt(0)) + (word.substring(1)) );
             }
         }
         

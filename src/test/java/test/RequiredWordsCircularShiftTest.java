@@ -49,7 +49,7 @@ public class RequiredWordsCircularShiftTest {
 	public void testGetShiftsWithOneRequiredWord() {
 		
 		RequiredWords requiredWords = RequiredWords.create();
-		requiredWords.addWord("Green");
+		requiredWords.addWord("green");
 		ReadableWordsCollection ignoredWords = WordsToIgnore.create();
     	RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords, ignoredWords);
 		List<String> shiftedLines = shifter.getShifts("Green");
@@ -67,8 +67,8 @@ public class RequiredWordsCircularShiftTest {
 	public void testGetShiftsForLineWithMoreThanOneRequiredWord() {
 		
 		RequiredWords requiredWords = RequiredWords.create();
-		requiredWords.addWord("Green");
-		requiredWords.addWord("Day");
+		requiredWords.addWord("green");
+		requiredWords.addWord("day");
 		ReadableWordsCollection ignoredWords = WordsToIgnore.create();
     	RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords, ignoredWords);
 		List<String> shiftedLines = shifter.getShifts("Green Day");
@@ -87,8 +87,8 @@ public class RequiredWordsCircularShiftTest {
 	public void testGetShiftsForLineWithMoreThanOneRequiredWordAndNonRequiredWords() {
 		
 		RequiredWords requiredWords = RequiredWords.create();
-		requiredWords.addWord("Green");
-		requiredWords.addWord("Day");
+		requiredWords.addWord("green");
+		requiredWords.addWord("day");
 		ReadableWordsCollection ignoredWords = WordsToIgnore.create();
     	RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords, ignoredWords);
 		List<String> shiftedLines = shifter.getShifts("Green and Day");
@@ -107,8 +107,8 @@ public class RequiredWordsCircularShiftTest {
 	public void testGetShiftsForLineWithRequiredAndNonRequiredWordsOfDifferentCases() {
 		
 		RequiredWords requiredWords = RequiredWords.create();
-		requiredWords.addWord("tEst");
-		requiredWords.addWord("Circular");
+		requiredWords.addWord("test");
+		requiredWords.addWord("circular");
 		ReadableWordsCollection ignoredWords = WordsToIgnore.create();
     	RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords, ignoredWords);
 		List<String> shiftedLines = shifter.getShifts("tEst this Circular shIft");
