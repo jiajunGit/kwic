@@ -22,6 +22,6 @@ public class RequiredWordsCircularShiftTest {
 	public void testCreateWithNullRequiredWords() {
 		
 		CheckableSpecialWordsCollection requiredWords = RequiredWords.create();
-		RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords);
+		RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(null);
 	}
 }
