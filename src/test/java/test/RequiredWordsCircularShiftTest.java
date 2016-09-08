@@ -15,13 +15,20 @@ import CS3213.WordsToIgnore;
 public class RequiredWordsCircularShiftTest {
 
 	@Test
-    public void testCreate() {
+    public void testCreateWithNonNullRequiredandIgnoreWords() {
         
 		CheckableSpecialWordsCollection requiredWords = RequiredWords.create();
 		CheckableSpecialWordsCollection ignoredWords = WordsToIgnore.create();
     	RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords, ignoredWords);
     	assertTrue( shifter != null );
     }
+	
+	@Test(expected=AssertionError.class)
+	public void testCreateWithNullIgnoreWords() {
+		
+		CheckableSpecialWordsCollection requiredWords = RequiredWords.create();
+		RequiredWordsCircularShift.create(requiredWords, null);
+	}
 	
 	@Test(expected=AssertionError.class)
 	public void testCreateWithNullRequiredWords() {
