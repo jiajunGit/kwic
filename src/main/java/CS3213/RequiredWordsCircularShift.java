@@ -18,6 +18,7 @@ public class RequiredWordsCircularShift implements AbstractShift {
 	
 	public static RequiredWordsCircularShift create( CheckableSpecialWordsCollection requiredWords, CheckableSpecialWordsCollection ignoredWords ) {
 		assert(requiredWords != null);
+		assert(ignoredWords != null);
 		return new RequiredWordsCircularShift(requiredWords, ignoredWords);
 	}
 	
