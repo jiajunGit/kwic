@@ -16,6 +16,8 @@ public class RequiredWordsCircularShift {
 	}
 	
 	public List<String> getShifts( String line ) {
+		
+		assert(_requiredWords.isEmpty() == false);
 		return null;
 	}
 }
