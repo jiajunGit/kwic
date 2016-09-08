@@ -132,4 +132,19 @@ public class RequiredWordsCircularShiftTest {
         assertTrue(testSet.contains("Test This Circular Shift"));
         assertTrue(testSet.contains("Circular Shift Test This"));
 	}
+	
+	@Test
+	public void testGetShiftsForLineWithEmptyWord() {
+		
+		RequiredWords requiredWords = RequiredWords.create();
+		requiredWords.addWord("GRETEL:");
+		ReadableWordsCollection ignoredWords = WordsToIgnore.create();
+    	RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords, ignoredWords);
+		List<String> shiftedLines = shifter.getShifts("GRETEL:  GRETEL:  GRETEL:");
+		
+		assertTrue(shiftedLines.size() == 3);
+        assertTrue(shiftedLines.get(0) == "Gretel: Gretel: Gretel:");
+        assertTrue(shiftedLines.get(1) == "Gretel: Gretel: Gretel:");
+        assertTrue(shiftedLines.get(2) == "Gretel: Gretel: Gretel:");
+	}
 }
