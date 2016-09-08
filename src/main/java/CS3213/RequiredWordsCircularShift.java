@@ -23,7 +23,7 @@ public class RequiredWordsCircularShift implements AbstractShift {
 	
 	public List<String> getShifts( String line ) {
 		
-		assert(_requiredWords.isEmpty() == false);
+		assert(line != null && _requiredWords.isEmpty() == false);
 		
 		line = line.toLowerCase();
         String[] words = line.split(DELIMITER);
