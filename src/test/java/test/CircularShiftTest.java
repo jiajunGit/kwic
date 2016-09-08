@@ -45,7 +45,7 @@ public class CircularShiftTest {
 
     	WordsToIgnore wordsToIgnore = WordsToIgnore.create();
         CircularShift circularShift = CircularShift.create(wordsToIgnore);
-        List<String> shifts = circularShift.getShifts(null);
+        circularShift.getShifts(null);
     }
 
     public void testGetShiftsEmptyLine() {
@@ -78,4 +78,21 @@ public class CircularShiftTest {
 
     }
 
+    @Test
+    public void testGetShiftsRandomCases() {
+    	
+    	WordsToIgnore wordsToIgnore = WordsToIgnore.create();
+    	wordsToIgnore.addWordToIgnore("shIft");
+    	
+    	CircularShift circularShift = CircularShift.create(wordsToIgnore);
+    	List<String> shifts = circularShift.getShifts("tEst this Circular shIft");
+        HashSet<String> testSet = new HashSet<String>();
+        for (String str : shifts) {
+            testSet.add(str);
+        }
+        assertTrue(testSet.size() == 3);
+        assertTrue(testSet.contains("Test This Circular shift"));
+        assertTrue(testSet.contains("This Circular shift Test"));
+        assertTrue(testSet.contains("Circular shift Test This"));
+    }
 }

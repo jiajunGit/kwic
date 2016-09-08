@@ -25,8 +25,7 @@ public class CircularShift {
         
         assert(line != null);
         
-        line = line.toLowerCase();
-        String[] words = capitalizeWordsNotIgnoredInLine(line.split(DELIMITER));
+        String[] words = line.split(DELIMITER);
         
         LinkedList<Integer> filteredShifts = new LinkedList<Integer>();
         for( int i = 0, length = words.length; i < length; ++i ){
@@ -34,6 +33,8 @@ public class CircularShift {
                 filteredShifts.add(i);
             }
         }
+        
+        words = capitalizeWordsNotIgnoredInLine(words);
         
         ArrayList<String> resultList = new ArrayList<String>(filteredShifts.size());
         Iterator<Integer> itr = filteredShifts.iterator();
@@ -74,11 +75,11 @@ public class CircularShift {
             
             word = line[i];
             if (_wordsToIgnore.contains(word)) {
-                newLine.add(word);
+                newLine.add(word.toLowerCase());
             } else if (word.trim().isEmpty()) {
                 continue;
             } else {
-                newLine.add( Character.toUpperCase(word.charAt(0)) + (word.substring(1)) );
+                newLine.add( Character.toUpperCase(word.charAt(0)) + (word.toLowerCase().substring(1)) );
             }
         }
         
