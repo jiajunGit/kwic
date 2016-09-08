@@ -16,7 +16,13 @@ public class ShiftFactory {
 		return _shiftFactory;
 	}
 	
-	public AbstractShift getShifter( CheckableSpecialWordsCollection ignoreWords, CheckableSpecialWordsCollection requiredWords ) {
-		return CircularShift.create(ignoreWords);
+	public AbstractShift getShifter( CheckableSpecialWordsCollection ignoredWords, CheckableSpecialWordsCollection requiredWords ) {
+		
+		if( requiredWords.isEmpty() ){
+			return CircularShift.create(ignoredWords);
+		}
+		else {
+			return RequiredWordsCircularShift.create(requiredWords, ignoredWords);
+		}
 	}
 }
