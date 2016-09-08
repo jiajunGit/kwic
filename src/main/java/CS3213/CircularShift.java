@@ -13,11 +13,11 @@ public class CircularShift implements AbstractShift {
     private CheckableSpecialWordsCollection _wordsToIgnore;
 
     private CircularShift( CheckableSpecialWordsCollection wordsToIgnore ) {
-    	assert( wordsToIgnore != null );
         _wordsToIgnore = wordsToIgnore;
     }
     
     public static CircularShift create( CheckableSpecialWordsCollection wordsToIgnore ) {
+    	assert( wordsToIgnore != null );
         return new CircularShift(wordsToIgnore);
     }
     

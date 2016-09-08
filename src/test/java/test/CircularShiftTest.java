@@ -12,6 +12,11 @@ import java.util.List;
 
 public class CircularShiftTest {
 
+	@Test(expected=AssertionError.class)
+	public void testCreateWithNullIgnoredWords() {
+		CircularShift.create(null);
+	}
+	
     @Test
     public void testGetShiftsOneWord() {
 
