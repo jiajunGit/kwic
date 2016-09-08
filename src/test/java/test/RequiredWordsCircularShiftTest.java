@@ -2,6 +2,9 @@ package test;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.HashSet;
+import java.util.List;
+
 import org.junit.Test;
 
 import CS3213.CheckableSpecialWordsCollection;
@@ -29,5 +32,22 @@ public class RequiredWordsCircularShiftTest {
 		CheckableSpecialWordsCollection requiredWords = RequiredWords.create();
     	RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords);
     	shifter.getShifts("ThIs Is An ExAmPle LiNe");
+	}
+	
+	@Test
+	public void testGetShiftsWithOneRequiredWord() {
+		
+		RequiredWords requiredWords = RequiredWords.create();
+		requiredWords.addRequiredWord("Green");
+		RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords);
+		List<String> shiftedLines = shifter.getShifts("Green");
+		
+		HashSet<String> testSet = new HashSet<String>();
+		for( String line : shiftedLines ) {
+			testSet.add(line);
+		}
+		
+		assertTrue( testSet.size() == 1 );
+		assertTrue( testSet.contains("Green") );
 	}
 }

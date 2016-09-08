@@ -30,7 +30,7 @@ public class CircularShift {
         
         LinkedList<Integer> filteredShifts = new LinkedList<Integer>();
         for( int i = 0, length = words.length; i < length; ++i ){
-            if( !isShiftStartingWithIgnoredWord(words, i) ){
+            if( !isShiftStartingWithIgnoredWord(words, i) ) {
                 filteredShifts.add(i);
             }
         }
