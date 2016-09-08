@@ -13,4 +13,8 @@ public class ShiftFactory {
 		}
 		return _shiftFactory;
 	}
+	
+	public AbstractShift getShifter() {
+		return null;
+	}
 }

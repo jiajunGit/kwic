@@ -14,4 +14,11 @@ public class ShiftFactoryTest {
 		ShiftFactory shiftFactory = ShiftFactory.getInstance();
 		assertTrue( shiftFactory != null );
 	}
+	
+	@Test
+	public void testGetShifterForNonNullOuput() {
+		
+		ShiftFactory shiftFactory = ShiftFactory.getInstance();
+		assertTrue( shiftFactory.getShifter() != null );
+	}
 }
