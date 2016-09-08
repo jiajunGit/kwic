@@ -18,6 +18,8 @@ public class ShiftFactory {
 	
 	public AbstractShift getShifter( CheckableSpecialWordsCollection ignoredWords, CheckableSpecialWordsCollection requiredWords ) {
 		
+		assert( requiredWords != null );
+		
 		if( requiredWords.isEmpty() ){
 			return CircularShift.create(ignoredWords);
 		}
