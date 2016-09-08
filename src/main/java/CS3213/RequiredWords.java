@@ -28,7 +28,7 @@ public class RequiredWords implements CheckableSpecialWordsCollection {
 	}
 	
 	public boolean isEmpty() {
-		return true;
+		return requiredWords.isEmpty();
 	}
 	
 	public int size() {
