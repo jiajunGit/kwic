@@ -100,4 +100,26 @@ public class CircularShiftTest {
         assertTrue(testSet.contains("This Circular shift Test"));
         assertTrue(testSet.contains("Circular shift Test This"));
     }
+    
+    @Test
+    public void testGetShiftWithEmptyWord() {
+    	
+    	WordsToIgnore wordsToIgnore = WordsToIgnore.create();
+    	wordsToIgnore.addWord("of");
+    	wordsToIgnore.addWord("the");
+    	wordsToIgnore.addWord("and");
+    	wordsToIgnore.addWord("are");
+    	wordsToIgnore.addWord("is");
+    	
+    	CircularShift circularShift = CircularShift.create(wordsToIgnore);
+    	List<String> shifts = circularShift.getShifts("HANSEL &  GRETEL: WARRIORS OF WITCHCRAFT");
+    	
+    	assertTrue(shifts.size() == 6);
+    	assertTrue(shifts.contains("& Gretel: Warriors of Witchcraft Hansel"));
+    	assertTrue(shifts.contains("Gretel: Warriors of Witchcraft Hansel &"));
+    	assertTrue(shifts.contains("Gretel: Warriors of Witchcraft Hansel &"));
+    	assertTrue(shifts.contains("Hansel & Gretel: Warriors of Witchcraft"));
+    	assertTrue(shifts.contains("Warriors of Witchcraft Hansel & Gretel:"));
+    	assertTrue(shifts.contains("Witchcraft Hansel & Gretel: Warriors of"));
+    }
 }
