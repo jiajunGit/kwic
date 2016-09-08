@@ -16,7 +16,7 @@ public class ShiftFactory {
 		return _shiftFactory;
 	}
 	
-	public AbstractShift getShifter( CheckableSpecialWordsCollection ignoredWords, CheckableSpecialWordsCollection requiredWords ) {
+	public AbstractShift getShifter( ReadableWordsCollection ignoredWords, ReadableWordsCollection requiredWords ) {
 		
 		assert( requiredWords != null );
 		

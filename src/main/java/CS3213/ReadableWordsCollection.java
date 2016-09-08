@@ -1,6 +1,6 @@
 package CS3213;
 
-public interface CheckableSpecialWordsCollection {
+public interface ReadableWordsCollection {
 
 	public boolean contains(String word);
 	public boolean isEmpty();

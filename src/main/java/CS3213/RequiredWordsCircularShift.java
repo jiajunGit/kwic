@@ -8,15 +8,15 @@ import java.util.List;
 public class RequiredWordsCircularShift implements AbstractShift {
 
 	private static final String DELIMITER = " ";
-	private CheckableSpecialWordsCollection _requiredWords;
-	private CheckableSpecialWordsCollection _ignoredWords;
+	private ReadableWordsCollection _requiredWords;
+	private ReadableWordsCollection _ignoredWords;
 	
-	private RequiredWordsCircularShift( CheckableSpecialWordsCollection requiredWords, CheckableSpecialWordsCollection ignoredWords ) {
+	private RequiredWordsCircularShift( ReadableWordsCollection requiredWords, ReadableWordsCollection ignoredWords ) {
 		_requiredWords = requiredWords;
 		_ignoredWords = ignoredWords;
 	}
 	
-	public static RequiredWordsCircularShift create( CheckableSpecialWordsCollection requiredWords, CheckableSpecialWordsCollection ignoredWords ) {
+	public static RequiredWordsCircularShift create( ReadableWordsCollection requiredWords, ReadableWordsCollection ignoredWords ) {
 		assert(requiredWords != null);
 		assert(ignoredWords != null);
 		return new RequiredWordsCircularShift(requiredWords, ignoredWords);

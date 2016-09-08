@@ -2,7 +2,7 @@ package CS3213;
 
 import java.util.HashSet;
 
-public class WordsToIgnore implements CheckableSpecialWordsCollection {
+public class WordsToIgnore implements ReadableWordsCollection, ModifiableWordsCollection {
     private HashSet<String> _wordsToIgnore;
     
     private WordsToIgnore() {
@@ -13,14 +13,14 @@ public class WordsToIgnore implements CheckableSpecialWordsCollection {
     	return new WordsToIgnore();
     }
 
-    public void addWordToIgnore(String word) {
+    public boolean addWord(String word) {
         assert(word != null);
-        _wordsToIgnore.add(word);
+        return _wordsToIgnore.add(word);
     }
 
-    public void removeWordToIgnore(String word) {
+    public boolean removeWord(String word) {
         assert(word != null);
-        _wordsToIgnore.remove(word);
+        return _wordsToIgnore.remove(word);
     }
     
     public boolean contains(String word) {

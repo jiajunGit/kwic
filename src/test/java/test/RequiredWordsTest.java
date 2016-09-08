@@ -20,21 +20,21 @@ public class RequiredWordsTest {
     public void testAddRequiredWordNormalWord() {
     	
     	RequiredWords requiredWords = RequiredWords.create();
-    	assertTrue( requiredWords.addRequiredWord("ExAmPle") );
+    	assertTrue( requiredWords.addWord("ExAmPle") );
     }
     
     @Test
     public void testAddRequiredWordEmptyWord() {
     	
     	RequiredWords requiredWords = RequiredWords.create();
-    	assertFalse( requiredWords.addRequiredWord("") );
+    	assertFalse( requiredWords.addWord("") );
     }
     
     @Test(expected=AssertionError.class)
     public void testAddRequiredWordNullWord() {
     	
     	RequiredWords requiredWords = RequiredWords.create();
-    	requiredWords.addRequiredWord(null);
+    	requiredWords.addWord(null);
     }
     
     @Test
@@ -42,15 +42,15 @@ public class RequiredWordsTest {
     	
     	RequiredWords requiredWords = RequiredWords.create();
     	String word = "ExAmPLe";
-    	requiredWords.addRequiredWord(word);
-    	assertTrue( requiredWords.removeRequiredWord(word) );
+    	requiredWords.addWord(word);
+    	assertTrue( requiredWords.removeWord(word) );
     }
     
     @Test
     public void testRemoveRequiredWordNotAddedNormalWord() {
     	
     	RequiredWords requiredWords = RequiredWords.create();
-    	assertFalse( requiredWords.removeRequiredWord("ExAmPLe") );
+    	assertFalse( requiredWords.removeWord("ExAmPLe") );
     }
     
     @Test
@@ -58,7 +58,7 @@ public class RequiredWordsTest {
     	
     	RequiredWords requiredWords = RequiredWords.create();
     	String word = "ExAmPLe";
-    	requiredWords.addRequiredWord(word);
+    	requiredWords.addWord(word);
     	assertTrue( requiredWords.contains(word) );
     }
     
@@ -81,7 +81,7 @@ public class RequiredWordsTest {
     	
     	RequiredWords requiredWords = RequiredWords.create();
     	String word = "ExAmPLe";
-    	requiredWords.addRequiredWord(word);
+    	requiredWords.addWord(word);
     	assertFalse(requiredWords.isEmpty());
     }
     
@@ -90,7 +90,7 @@ public class RequiredWordsTest {
     	
     	RequiredWords requiredWords = RequiredWords.create();
     	String word = "ExAmPLe";
-    	requiredWords.addRequiredWord(word);
+    	requiredWords.addWord(word);
     	assertTrue(requiredWords.size() == 1);
     }
     

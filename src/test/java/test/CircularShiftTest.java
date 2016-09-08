@@ -87,7 +87,7 @@ public class CircularShiftTest {
     public void testGetShiftsRandomCases() {
     	
     	WordsToIgnore wordsToIgnore = WordsToIgnore.create();
-    	wordsToIgnore.addWordToIgnore("shIft");
+    	wordsToIgnore.addWord("shIft");
     	
     	CircularShift circularShift = CircularShift.create(wordsToIgnore);
     	List<String> shifts = circularShift.getShifts("tEst this Circular shIft");

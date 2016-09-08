@@ -13,19 +13,19 @@ public class WordsToIgnoreTest {
 
         assertFalse(wordsToIgnore.contains("the"));
 
-        wordsToIgnore.addWordToIgnore("the");
-        wordsToIgnore.addWordToIgnore("of");
-        wordsToIgnore.addWordToIgnore("");
+        wordsToIgnore.addWord("the");
+        wordsToIgnore.addWord("of");
+        wordsToIgnore.addWord("");
         assertTrue(wordsToIgnore.contains("the"));
         assertTrue(wordsToIgnore.contains("of"));
         assertTrue(wordsToIgnore.contains(""));
         assertFalse(wordsToIgnore.contains("after"));
         assertFalse(wordsToIgnore.contains("before"));
 
-        wordsToIgnore.addWordToIgnore("of"); // add duplicated word
-        wordsToIgnore.addWordToIgnore("after");
-        wordsToIgnore.removeWordToIgnore("the");
-        wordsToIgnore.removeWordToIgnore("");
+        wordsToIgnore.addWord("of"); // add duplicated word
+        wordsToIgnore.addWord("after");
+        wordsToIgnore.removeWord("the");
+        wordsToIgnore.removeWord("");
         assertFalse(wordsToIgnore.contains("the"));
         assertTrue(wordsToIgnore.contains("of"));
         assertFalse(wordsToIgnore.contains(""));
@@ -45,8 +45,8 @@ public class WordsToIgnoreTest {
     public void testIsWordIgnoreCaseSensitive() throws Exception {
         WordsToIgnore wordsToIgnore = WordsToIgnore.create();
 
-        wordsToIgnore.addWordToIgnore("A");
-        wordsToIgnore.addWordToIgnore("iGnoreMe");
+        wordsToIgnore.addWord("A");
+        wordsToIgnore.addWord("iGnoreMe");
 
         assertTrue(wordsToIgnore.contains("A"));
         assertTrue(wordsToIgnore.contains("iGnoreMe"));
@@ -54,13 +54,13 @@ public class WordsToIgnoreTest {
         assertFalse(wordsToIgnore.contains("ignoreme"));
         assertFalse(wordsToIgnore.contains("Ignoreme"));
 
-        wordsToIgnore.removeWordToIgnore("iGnoreMe");
+        wordsToIgnore.removeWord("iGnoreMe");
         assertFalse(wordsToIgnore.contains("iGnoreMe"));
         
         // Duplicate try again (expand of given)
-        wordsToIgnore.addWordToIgnore("Bananas");
-        wordsToIgnore.addWordToIgnore("Bananas");
-        wordsToIgnore.removeWordToIgnore("Bananas");
+        wordsToIgnore.addWord("Bananas");
+        wordsToIgnore.addWord("Bananas");
+        wordsToIgnore.removeWord("Bananas");
         assertFalse(wordsToIgnore.contains("Bananas"));
         
     }
@@ -70,10 +70,10 @@ public class WordsToIgnoreTest {
     public void testIsNumberIgnored() throws Exception {
         WordsToIgnore wordsToIgnore = WordsToIgnore.create();
 
-        wordsToIgnore.addWordToIgnore("1");
-        wordsToIgnore.addWordToIgnore("2number");
-        wordsToIgnore.addWordToIgnore("n2mb3r");;
-        wordsToIgnore.addWordToIgnore("num43");
+        wordsToIgnore.addWord("1");
+        wordsToIgnore.addWord("2number");
+        wordsToIgnore.addWord("n2mb3r");;
+        wordsToIgnore.addWord("num43");
         
         assertTrue(wordsToIgnore.contains("1"));
         assertTrue(wordsToIgnore.contains("2number"));
@@ -82,7 +82,7 @@ public class WordsToIgnoreTest {
         assertFalse(wordsToIgnore.contains("number"));
         assertFalse(wordsToIgnore.contains("num"));
         
-        wordsToIgnore.removeWordToIgnore("num43");
+        wordsToIgnore.removeWord("num43");
         assertFalse(wordsToIgnore.contains("num43"));
 
     }
@@ -92,9 +92,9 @@ public class WordsToIgnoreTest {
     public void testIsSpecialCharacterIgnored() throws Exception {
         WordsToIgnore wordsToIgnore = WordsToIgnore.create();
 
-        wordsToIgnore.addWordToIgnore("@");
-        wordsToIgnore.addWordToIgnore("nu^*rology");
-        wordsToIgnore.addWordToIgnore("}}work{{{\"");
+        wordsToIgnore.addWord("@");
+        wordsToIgnore.addWord("nu^*rology");
+        wordsToIgnore.addWord("}}work{{{\"");
         
         assertTrue(wordsToIgnore.contains("@"));
         assertTrue(wordsToIgnore.contains("nu^*rology"));
@@ -102,7 +102,7 @@ public class WordsToIgnoreTest {
         assertFalse(wordsToIgnore.contains("nurology"));
         assertFalse(wordsToIgnore.contains("work"));
         
-        wordsToIgnore.removeWordToIgnore("nu^*rology");
+        wordsToIgnore.removeWord("nu^*rology");
         assertFalse(wordsToIgnore.contains("nu^*rology"));
 
 

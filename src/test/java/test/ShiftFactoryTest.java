@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import CS3213.AbstractShift;
-import CS3213.CheckableSpecialWordsCollection;
+import CS3213.ReadableWordsCollection;
 import CS3213.CircularShift;
 import CS3213.RequiredWords;
 import CS3213.RequiredWordsCircularShift;
@@ -25,8 +25,8 @@ public class ShiftFactoryTest {
 	public void testGetShifterForNonNullOuput() {
 		
 		ShiftFactory shiftFactory = ShiftFactory.getInstance();
-		CheckableSpecialWordsCollection ignoreWords = WordsToIgnore.create();
-		CheckableSpecialWordsCollection requiredWords = RequiredWords.create();
+		ReadableWordsCollection ignoreWords = WordsToIgnore.create();
+		ReadableWordsCollection requiredWords = RequiredWords.create();
 		assertTrue( shiftFactory.getShifter(ignoreWords, requiredWords) != null );
 	}
 	
@@ -34,8 +34,8 @@ public class ShiftFactoryTest {
 	public void testGetShifterWithNoRequiredWords() {
 		
 		ShiftFactory shiftFactory = ShiftFactory.getInstance();
-		CheckableSpecialWordsCollection ignoreWords = WordsToIgnore.create();
-		CheckableSpecialWordsCollection requiredWords = RequiredWords.create();
+		ReadableWordsCollection ignoreWords = WordsToIgnore.create();
+		ReadableWordsCollection requiredWords = RequiredWords.create();
 		AbstractShift shifter = shiftFactory.getShifter(ignoreWords, requiredWords);
 		assertTrue( shifter instanceof CircularShift );
 	}
@@ -44,9 +44,9 @@ public class ShiftFactoryTest {
 	public void testGetShifterWithRequiredWords() {
 		
 		ShiftFactory shiftFactory = ShiftFactory.getInstance();
-		CheckableSpecialWordsCollection ignoreWords = WordsToIgnore.create();
+		ReadableWordsCollection ignoreWords = WordsToIgnore.create();
 		RequiredWords requiredWords = RequiredWords.create();
-		requiredWords.addRequiredWord("Example");
+		requiredWords.addWord("Example");
 		AbstractShift shifter = shiftFactory.getShifter(ignoreWords, requiredWords);
 		assertTrue( shifter instanceof RequiredWordsCircularShift );
 	}
@@ -55,7 +55,7 @@ public class ShiftFactoryTest {
 	public void testGetShifterWithNullIgnoreWords() {
 		
 		ShiftFactory shiftFactory = ShiftFactory.getInstance();
-		CheckableSpecialWordsCollection requiredWords = RequiredWords.create();
+		ReadableWordsCollection requiredWords = RequiredWords.create();
 		shiftFactory.getShifter(null, requiredWords);
 	}
 	
@@ -63,7 +63,7 @@ public class ShiftFactoryTest {
 	public void testGetShifterWithNullRequiredWords() {
 		
 		ShiftFactory shiftFactory = ShiftFactory.getInstance();
-		CheckableSpecialWordsCollection ignoreWords = WordsToIgnore.create();
+		ReadableWordsCollection ignoreWords = WordsToIgnore.create();
 		shiftFactory.getShifter(ignoreWords, null);
 	}
 }
