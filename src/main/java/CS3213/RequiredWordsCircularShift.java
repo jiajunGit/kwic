@@ -9,21 +9,23 @@ public class RequiredWordsCircularShift {
 
 	private static final String DELIMITER = " ";
 	private CheckableSpecialWordsCollection _requiredWords;
+	private CheckableSpecialWordsCollection _ignoredWords;
 	
-	private RequiredWordsCircularShift( CheckableSpecialWordsCollection requiredWords ) {
+	private RequiredWordsCircularShift( CheckableSpecialWordsCollection requiredWords, CheckableSpecialWordsCollection ignoredWords ) {
 		_requiredWords = requiredWords;
+		_ignoredWords = ignoredWords;
 	}
 	
-	public static RequiredWordsCircularShift create( CheckableSpecialWordsCollection requiredWords ) {
+	public static RequiredWordsCircularShift create( CheckableSpecialWordsCollection requiredWords, CheckableSpecialWordsCollection ignoredWords ) {
 		assert(requiredWords != null);
-		return new RequiredWordsCircularShift(requiredWords);
+		return new RequiredWordsCircularShift(requiredWords, ignoredWords);
 	}
 	
 	public List<String> getShifts( String line ) {
 		
 		assert(_requiredWords.isEmpty() == false);
 		
-		String[] words = line.split(DELIMITER);
+        String[] words = line.split(DELIMITER);
 		
 		LinkedList<Integer> filteredShifts = new LinkedList<Integer>();
         for( int i = 0, length = words.length; i < length; ++i ){
@@ -32,6 +34,8 @@ public class RequiredWordsCircularShift {
             }
         }
 		
+        words = capitalizeWordsNotIgnoredInLine(words);
+        
         ArrayList<String> resultList = new ArrayList<String>(filteredShifts.size());
         Iterator<Integer> itr = filteredShifts.iterator();
         while( itr.hasNext() ){
@@ -62,4 +66,23 @@ public class RequiredWordsCircularShift {
 	
 	    return builder.toString();
 	}
+	
+	private String[] capitalizeWordsNotIgnoredInLine(String[] line) {
+        
+        ArrayList<String> newLine = new ArrayList<String>(line.length);
+        String word;
+        for( int i = 0, size = line.length; i < size; ++i ) {
+            
+            word = line[i];
+            if (_ignoredWords.contains(word)) {
+                newLine.add(word.toLowerCase());
+            } else if (word.trim().isEmpty()) {
+                continue;
+            } else {
+                newLine.add( Character.toUpperCase(word.charAt(0)) + (word.toLowerCase().substring(1)) );
+            }
+        }
+        
+        return newLine.toArray(new String[newLine.size()]);
+    }
 }

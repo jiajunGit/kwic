@@ -10,6 +10,7 @@ import org.junit.Test;
 import CS3213.CheckableSpecialWordsCollection;
 import CS3213.RequiredWords;
 import CS3213.RequiredWordsCircularShift;
+import CS3213.WordsToIgnore;
 
 public class RequiredWordsCircularShiftTest {
 
@@ -17,20 +18,23 @@ public class RequiredWordsCircularShiftTest {
     public void testCreate() {
         
 		CheckableSpecialWordsCollection requiredWords = RequiredWords.create();
-    	RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords);
+		CheckableSpecialWordsCollection ignoredWords = WordsToIgnore.create();
+    	RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords, ignoredWords);
     	assertTrue( shifter != null );
     }
 	
 	@Test(expected=AssertionError.class)
 	public void testCreateWithNullRequiredWords() {
-		RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(null);
+		CheckableSpecialWordsCollection ignoredWords = WordsToIgnore.create();
+		RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(null, ignoredWords);
 	}
 	
 	@Test(expected=AssertionError.class)
 	public void testGetShiftsWithoutRequiredWords() {
 		
 		CheckableSpecialWordsCollection requiredWords = RequiredWords.create();
-    	RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords);
+		CheckableSpecialWordsCollection ignoredWords = WordsToIgnore.create();
+    	RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords, ignoredWords);
     	shifter.getShifts("ThIs Is An ExAmPle LiNe");
 	}
 	
@@ -39,7 +43,8 @@ public class RequiredWordsCircularShiftTest {
 		
 		RequiredWords requiredWords = RequiredWords.create();
 		requiredWords.addRequiredWord("Green");
-		RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords);
+		CheckableSpecialWordsCollection ignoredWords = WordsToIgnore.create();
+    	RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords, ignoredWords);
 		List<String> shiftedLines = shifter.getShifts("Green");
 		
 		HashSet<String> testSet = new HashSet<String>();
@@ -57,7 +62,8 @@ public class RequiredWordsCircularShiftTest {
 		RequiredWords requiredWords = RequiredWords.create();
 		requiredWords.addRequiredWord("Green");
 		requiredWords.addRequiredWord("Day");
-		RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords);
+		CheckableSpecialWordsCollection ignoredWords = WordsToIgnore.create();
+    	RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords, ignoredWords);
 		List<String> shiftedLines = shifter.getShifts("Green Day");
 		
 		HashSet<String> testSet = new HashSet<String>();
@@ -76,7 +82,8 @@ public class RequiredWordsCircularShiftTest {
 		RequiredWords requiredWords = RequiredWords.create();
 		requiredWords.addRequiredWord("Green");
 		requiredWords.addRequiredWord("Day");
-		RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords);
+		CheckableSpecialWordsCollection ignoredWords = WordsToIgnore.create();
+    	RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords, ignoredWords);
 		List<String> shiftedLines = shifter.getShifts("Green and Day");
 		
 		HashSet<String> testSet = new HashSet<String>();
@@ -85,8 +92,8 @@ public class RequiredWordsCircularShiftTest {
 		}
 		
 		assertTrue( testSet.size() == 2 );
-		assertTrue( testSet.contains("Green and Day") );
-		assertTrue( testSet.contains("Day Green and") );
+		assertTrue( testSet.contains("Green And Day") );
+		assertTrue( testSet.contains("Day Green And") );
 	}
 	
 	@Test
@@ -95,7 +102,8 @@ public class RequiredWordsCircularShiftTest {
 		RequiredWords requiredWords = RequiredWords.create();
 		requiredWords.addRequiredWord("tEst");
 		requiredWords.addRequiredWord("Circular");
-		RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords);
+		CheckableSpecialWordsCollection ignoredWords = WordsToIgnore.create();
+    	RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords, ignoredWords);
 		List<String> shiftedLines = shifter.getShifts("tEst this Circular shIft");
 		
 		HashSet<String> testSet = new HashSet<String>();
