@@ -15,6 +15,7 @@ public class RequiredWords {
     }
 	
 	public boolean addRequiredWord( String word ) {
+		assert(word != null);
 		return requiredWords.add(word);
 	}
 }
