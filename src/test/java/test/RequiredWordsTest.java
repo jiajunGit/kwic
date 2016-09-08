@@ -85,6 +85,15 @@ public class RequiredWordsTest {
     	assertFalse(requiredWords.isEmpty());
     }
     
+    @Test
+    public void testSizeWithAddedWords() {
+    	
+    	RequiredWords requiredWords = RequiredWords.create();
+    	String word = "ExAmPLe";
+    	requiredWords.addRequiredWord(word);
+    	assertTrue(requiredWords.size() == 1);
+    }
+    
     // Existence
     // Read the input & store
     
