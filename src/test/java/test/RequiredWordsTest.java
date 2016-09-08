@@ -53,6 +53,13 @@ public class RequiredWordsTest {
     	assertFalse( requiredWords.removeWord("ExAmPLe") );
     }
     
+    @Test(expected=AssertionError.class)
+    public void testRemoveRequiredWordNullWord() {
+    	
+    	RequiredWords requiredWords = RequiredWords.create();
+    	requiredWords.removeWord(null);
+    }
+    
     @Test
     public void testContainsAddedNormalWord() {
     	
