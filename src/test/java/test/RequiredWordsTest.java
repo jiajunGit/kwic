@@ -76,6 +76,13 @@ public class RequiredWordsTest {
     	assertFalse( requiredWords.contains("ExAmPLe") );
     }
     
+    @Test(expected=AssertionError.class)
+    public void testContainsNullWord() {
+    	
+    	RequiredWords requiredWords = RequiredWords.create();
+    	requiredWords.contains(null);
+    }
+    
     @Test
     public void testIsEmptyWithNoAddedWords() {
     	
