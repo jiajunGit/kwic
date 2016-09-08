@@ -32,6 +32,6 @@ public class RequiredWords implements CheckableSpecialWordsCollection {
 	}
 	
 	public int size() {
-		return 0;
+		return requiredWords.size();
 	}
 }
