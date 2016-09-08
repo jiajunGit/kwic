@@ -7,4 +7,8 @@ public class RequiredWords {
 	public static RequiredWords create() {
     	return new RequiredWords();
     }
+	
+	public boolean addRequiredWord( String word ) {
+		return false;
+	}
 }

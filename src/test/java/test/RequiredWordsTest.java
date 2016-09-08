@@ -16,6 +16,13 @@ public class RequiredWordsTest {
     	assertTrue( requiredWords != null );
     }
     
+    @Test
+    public void testAddRequiredWordNormalWord() {
+    	
+    	RequiredWords requiredWords = RequiredWords.create();
+    	assertTrue( requiredWords.addRequiredWord("ExAmPle") );
+    }
+    
     // Existence
     // Read the input & store
     
