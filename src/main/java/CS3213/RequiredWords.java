@@ -24,7 +24,7 @@ public class RequiredWords implements CheckableSpecialWordsCollection {
 	}
 	
 	public boolean contains( String word ) {
-		return false;
+		return true;
 	}
 	
 	public boolean isEmpty() {
