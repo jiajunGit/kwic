@@ -9,7 +9,7 @@ public class KWIC {
 
 	private static final String INPUT_INTRO = "Enter movie titles (terminate input by entering empty line) ";
 	private static final String IGNORE_WORDS_INTRO = "Enter words to ignore (terminate input by entering empty line) ";
-	private static final String REQUIRED_WORDS_INTRO = "Enter required words (terminate input by entering empty line) ";
+	private static final String REQUIRED_WORDS_INTRO = "Enter required words [Required words cannot be the same as any ignore word] (terminate input by entering empty line) ";
 	private static final String ADDING_REQUIRED_WORDS_ERROR_MSG = "Required words cannot be the same as any words to ignore! The required word just entered will be discarded. Please continue your inputs below:";
 	
 	private void readInputs( Scanner reader, Collection<String> inputs, Conditions condition ) {
@@ -100,7 +100,8 @@ public class KWIC {
 		readRequiredWords(sc, requiredWords, wordsToIgnore);
 		
 		Alphabetizer alphabetizer = Alphabetizer.create();
-        CircularShift shifter = CircularShift.create(wordsToIgnore);
+		ShiftFactory shiftFactory = ShiftFactory.getInstance();
+        AbstractShift shifter = shiftFactory.getShifter(wordsToIgnore, requiredWords);
         for (String str : inputs) {
             alphabetizer.addLines(shifter.getShifts(str));
         }
