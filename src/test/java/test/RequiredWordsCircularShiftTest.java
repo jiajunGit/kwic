@@ -143,8 +143,8 @@ public class RequiredWordsCircularShiftTest {
 		List<String> shiftedLines = shifter.getShifts("GRETEL:  GRETEL:  GRETEL:");
 		
 		assertTrue(shiftedLines.size() == 3);
-        assertTrue(shiftedLines.get(0) == "Gretel: Gretel: Gretel:");
-        assertTrue(shiftedLines.get(1) == "Gretel: Gretel: Gretel:");
-        assertTrue(shiftedLines.get(2) == "Gretel: Gretel: Gretel:");
+        assertTrue(shiftedLines.get(0).equals("Gretel: Gretel: Gretel:"));
+        assertTrue(shiftedLines.get(1).equals("Gretel: Gretel: Gretel:"));
+        assertTrue(shiftedLines.get(2).equals("Gretel: Gretel: Gretel:"));
 	}
 }
