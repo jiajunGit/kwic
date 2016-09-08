@@ -53,12 +53,16 @@ public class RequiredWordsCircularShift implements AbstractShift {
 	    StringBuilder builder = new StringBuilder();
 	
 	    for (int i=index;i<words.length;i++) {
-	        builder.append(words[i]);
-	        builder.append(DELIMITER);
+	    	if(words[i] != null){
+		        builder.append(words[i]);
+		        builder.append(DELIMITER);
+	    	}
 	    }
 	    for (int i=0;i<index;i++) {
-	        builder.append(words[i]);
-	        builder.append(DELIMITER);
+	    	if(words[i] != null) {
+		        builder.append(words[i]);
+		        builder.append(DELIMITER);
+	    	}
 	    }
 	    if (builder.length() > 0) {
 	        builder.deleteCharAt(builder.length() - 1);
@@ -77,7 +81,7 @@ public class RequiredWordsCircularShift implements AbstractShift {
             if (_ignoredWords.contains(word)) {
             	newLine.add(word);
             } else if (word.trim().isEmpty()) {
-                continue;
+            	newLine.add(null);
             } else {
             	newLine.add( Character.toUpperCase(word.charAt(0)) + (word.substring(1)) );
             }
