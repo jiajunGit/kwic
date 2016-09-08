@@ -22,4 +22,12 @@ public class RequiredWordsCircularShiftTest {
 	public void testCreateWithNullRequiredWords() {
 		RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(null);
 	}
+	
+	@Test(expected=AssertionError.class)
+	public void testGetShiftsWithoutRequiredWords() {
+		
+		CheckableSpecialWordsCollection requiredWords = RequiredWords.create();
+    	RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords);
+    	shifter.getShifts("ThIs Is An ExAmPle LiNe");
+	}
 }

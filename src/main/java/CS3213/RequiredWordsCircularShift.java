@@ -1,5 +1,7 @@
 package CS3213;
 
+import java.util.List;
+
 public class RequiredWordsCircularShift {
 
 	private CheckableSpecialWordsCollection _requiredWords;
@@ -13,5 +15,7 @@ public class RequiredWordsCircularShift {
 		return new RequiredWordsCircularShift(requiredWords);
 	}
 	
-	
+	public List<String> getShifts( String line ) {
+		return null;
+	}
 }
