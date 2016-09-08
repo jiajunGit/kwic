@@ -2,7 +2,15 @@ package CS3213;
 
 public class RequiredWordsCircularShift {
 
-	public static RequiredWordsCircularShift create( CheckableSpecialWordsCollection wordsToIgnore ) {
-		return null;
+	private CheckableSpecialWordsCollection _requiredWords;
+	
+	private RequiredWordsCircularShift( CheckableSpecialWordsCollection requiredWords ) {
+		_requiredWords = requiredWords;
 	}
+	
+	public static RequiredWordsCircularShift create( CheckableSpecialWordsCollection requiredWords ) {
+		return new RequiredWordsCircularShift(requiredWords);
+	}
+	
+	
 }
