@@ -94,6 +94,13 @@ public class RequiredWordsTest {
     	assertTrue(requiredWords.size() == 1);
     }
     
+    @Test
+    public void testSizeWithoutAddedWords() {
+    	
+    	RequiredWords requiredWords = RequiredWords.create();
+    	assertTrue(requiredWords.size() == 0);
+    }
+    
     // Existence
     // Read the input & store
     
