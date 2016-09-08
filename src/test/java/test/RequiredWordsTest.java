@@ -37,6 +37,15 @@ public class RequiredWordsTest {
     	requiredWords.addRequiredWord(null);
     }
     
+    @Test
+    public void testRemoveRequiredWordAddedNormalWord() {
+    	
+    	RequiredWords requiredWords = RequiredWords.create();
+    	String word = "ExAmPLe";
+    	requiredWords.addRequiredWord(word);
+    	assertTrue( requiredWords.removeRequiredWord(word) );
+    }
+    
     // Existence
     // Read the input & store
     

@@ -14,6 +14,10 @@ public class RequiredWords {
     	return new RequiredWords();
     }
 	
+	public boolean removeRequiredWord( String word ) {
+		return false;
+	}
+	
 	public boolean addRequiredWord( String word ) {
 		assert(word != null);
 		return (!word.isEmpty() ? requiredWords.add(word) : false);
