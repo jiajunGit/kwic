@@ -88,4 +88,23 @@ public class RequiredWordsCircularShiftTest {
 		assertTrue( testSet.contains("Green and Day") );
 		assertTrue( testSet.contains("Day Green and") );
 	}
+	
+	@Test
+	public void testGetShiftsForLineWithRequiredAndNonRequiredWordsOfDifferentCases() {
+		
+		RequiredWords requiredWords = RequiredWords.create();
+		requiredWords.addRequiredWord("tEst");
+		requiredWords.addRequiredWord("Circular");
+		RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords);
+		List<String> shiftedLines = shifter.getShifts("tEst this Circular shIft");
+		
+		HashSet<String> testSet = new HashSet<String>();
+		for( String line : shiftedLines ) {
+			testSet.add(line);
+		}
+		
+		assertTrue(testSet.size() == 2);
+        assertTrue(testSet.contains("Test This Circular Shift"));
+        assertTrue(testSet.contains("Circular Shift Test This"));
+	}
 }
