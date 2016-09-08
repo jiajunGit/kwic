@@ -76,6 +76,15 @@ public class RequiredWordsTest {
     	assertTrue(requiredWords.isEmpty());
     }
     
+    @Test
+    public void testIsEmptyWithAddedWords() {
+    	
+    	RequiredWords requiredWords = RequiredWords.create();
+    	String word = "ExAmPLe";
+    	requiredWords.addRequiredWord(word);
+    	assertFalse(requiredWords.isEmpty());
+    }
+    
     // Existence
     // Read the input & store
     
