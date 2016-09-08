@@ -39,23 +39,32 @@ public class CircularShift implements AbstractShift {
         
         ArrayList<String> resultList = new ArrayList<String>(filteredShifts.size());
         Iterator<Integer> itr = filteredShifts.iterator();
+        String shiftedLine;
         while( itr.hasNext() ){
-            resultList.add(getShiftedLine( itr.next(), words ));
+        	shiftedLine = getShiftedLine( itr.next(), words );
+        	if(shiftedLine != null) {
+        		resultList.add(shiftedLine);
+        	}
         }
         
         return resultList;
     }
 
     private String getShiftedLine(int index, String[] words) {
-        StringBuilder builder = new StringBuilder();
+    	
+    	StringBuilder builder = new StringBuilder();
 
         for (int i=index;i<words.length;i++) {
-            builder.append(words[i]);
-            builder.append(DELIMITER);
+            if(words[i] != null) {
+	        	builder.append(words[i]);
+	            builder.append(DELIMITER);
+            }
         }
         for (int i=0;i<index;i++) {
-            builder.append(words[i]);
-            builder.append(DELIMITER);
+        	if(words[i] != null) {
+	            builder.append(words[i]);
+	            builder.append(DELIMITER);
+        	}
         }
         if (builder.length() > 0) {
             builder.deleteCharAt(builder.length() - 1);
@@ -78,7 +87,7 @@ public class CircularShift implements AbstractShift {
             if (_wordsToIgnore.contains(word)) {
             	newLine.add(word);
             } else if (word.trim().isEmpty()) {
-                continue;
+            	newLine.add(null);
             } else {
             	newLine.add( Character.toUpperCase(word.charAt(0)) + (word.substring(1)) );
             }
