@@ -25,7 +25,6 @@ public class RequiredWordsCircularShift implements AbstractShift {
 		
 		assert(line != null && _requiredWords.isEmpty() == false);
 		
-		line = line.toLowerCase();
         String[] words = line.split(DELIMITER);
 		
 		LinkedList<Integer> filteredShifts = new LinkedList<Integer>();
@@ -74,7 +73,7 @@ public class RequiredWordsCircularShift implements AbstractShift {
         String word;
         for( int i = 0, size = line.length; i < size; ++i ) {
             
-            word = line[i];
+            word = line[i].toLowerCase();
             if (_ignoredWords.contains(word)) {
             	newLine.add(word);
             } else if (word.trim().isEmpty()) {
