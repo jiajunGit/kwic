@@ -1,5 +1,7 @@
 package CS3213;
 
+import CS3213.CircularShift;
+
 public class ShiftFactory {
 
 	private static ShiftFactory _shiftFactory = null;
@@ -14,7 +16,7 @@ public class ShiftFactory {
 		return _shiftFactory;
 	}
 	
-	public AbstractShift getShifter() {
-		return null;
+	public AbstractShift getShifter( CheckableSpecialWordsCollection ignoreWords, CheckableSpecialWordsCollection requiredWords ) {
+		return CircularShift.create(ignoreWords);
 	}
 }

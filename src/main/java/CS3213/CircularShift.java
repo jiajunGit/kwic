@@ -17,7 +17,7 @@ public class CircularShift implements AbstractShift {
         _wordsToIgnore = wordsToIgnore;
     }
     
-    public static CircularShift create( WordsToIgnore wordsToIgnore ) {
+    public static CircularShift create( CheckableSpecialWordsCollection wordsToIgnore ) {
         return new CircularShift(wordsToIgnore);
     }
     

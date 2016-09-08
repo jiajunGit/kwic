@@ -4,7 +4,12 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import CS3213.AbstractShift;
+import CS3213.CheckableSpecialWordsCollection;
+import CS3213.CircularShift;
+import CS3213.RequiredWords;
 import CS3213.ShiftFactory;
+import CS3213.WordsToIgnore;
 
 public class ShiftFactoryTest {
 
@@ -19,6 +24,18 @@ public class ShiftFactoryTest {
 	public void testGetShifterForNonNullOuput() {
 		
 		ShiftFactory shiftFactory = ShiftFactory.getInstance();
-		assertTrue( shiftFactory.getShifter() != null );
+		CheckableSpecialWordsCollection ignoreWords = WordsToIgnore.create();
+		CheckableSpecialWordsCollection requiredWords = RequiredWords.create();
+		assertTrue( shiftFactory.getShifter(ignoreWords, requiredWords) != null );
+	}
+	
+	@Test
+	public void testGetShifterWithNoRequiredWords() {
+		
+		ShiftFactory shiftFactory = ShiftFactory.getInstance();
+		CheckableSpecialWordsCollection ignoreWords = WordsToIgnore.create();
+		CheckableSpecialWordsCollection requiredWords = RequiredWords.create();
+		AbstractShift shifter = shiftFactory.getShifter(ignoreWords, requiredWords);
+		assertTrue( shifter instanceof CircularShift );
 	}
 }
