@@ -25,6 +25,7 @@ public class RequiredWords implements ReadableWordsCollection, ModifiableWordsCo
 	}
 	
 	public boolean contains( String word ) {
+		assert(word != null);
 		return requiredWords.contains(word);
 	}
 	
