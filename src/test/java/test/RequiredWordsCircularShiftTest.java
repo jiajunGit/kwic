@@ -70,7 +70,7 @@ public class RequiredWordsCircularShiftTest {
 		}
 		
 		assertTrue( testSet.size() == 1 );
-		assertTrue( testSet.contains("Green") );
+		assertTrue( testSet.remove("Green") );
 	}
 	
 	@Test
@@ -89,8 +89,8 @@ public class RequiredWordsCircularShiftTest {
 		}
 		
 		assertTrue( testSet.size() == 2 );
-		assertTrue( testSet.contains("Green Day") );
-		assertTrue( testSet.contains("Day Green") );
+		assertTrue( testSet.remove("Green Day") );
+		assertTrue( testSet.remove("Day Green") );
 	}
 	
 	@Test
@@ -109,8 +109,8 @@ public class RequiredWordsCircularShiftTest {
 		}
 		
 		assertTrue( testSet.size() == 2 );
-		assertTrue( testSet.contains("Green And Day") );
-		assertTrue( testSet.contains("Day Green And") );
+		assertTrue( testSet.remove("Green And Day") );
+		assertTrue( testSet.remove("Day Green And") );
 	}
 	
 	@Test
@@ -129,8 +129,8 @@ public class RequiredWordsCircularShiftTest {
 		}
 		
 		assertTrue(testSet.size() == 2);
-        assertTrue(testSet.contains("Test This Circular Shift"));
-        assertTrue(testSet.contains("Circular Shift Test This"));
+        assertTrue(testSet.remove("Test This Circular Shift"));
+        assertTrue(testSet.remove("Circular Shift Test This"));
 	}
 	
 	@Test

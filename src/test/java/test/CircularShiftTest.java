@@ -24,7 +24,7 @@ public class CircularShiftTest {
         List<String> shifts = circularShift.getShifts("shift");
         assertTrue( shifts != null );
         assertTrue( shifts.size() == 1 );
-        assertTrue( shifts.contains("Shift") );
+        assertTrue( shifts.remove("Shift") );
     }
 
     @Test
@@ -35,10 +35,10 @@ public class CircularShiftTest {
         List<String> shifts = circularShift.getShifts("tEst this Circular shIft");
         
         assertTrue(shifts.size() == 4);
-        assertTrue(shifts.contains("Test This Circular Shift"));
-        assertTrue(shifts.contains("This Circular Shift Test"));
-        assertTrue(shifts.contains("Circular Shift Test This"));
-        assertTrue(shifts.contains("Shift Test This Circular"));
+        assertTrue(shifts.remove("Test This Circular Shift"));
+        assertTrue(shifts.remove("This Circular Shift Test"));
+        assertTrue(shifts.remove("Circular Shift Test This"));
+        assertTrue(shifts.remove("Shift Test This Circular"));
     }
 
     @Test(expected=AssertionError.class)
@@ -60,7 +60,7 @@ public class CircularShiftTest {
         
         assertTrue(shifts != null);
         assertTrue(shifts.size() == 1);
-        assertTrue(shifts.contains("Null"));
+        assertTrue(shifts.remove("Null"));
     }    
     
     @Test
@@ -71,7 +71,7 @@ public class CircularShiftTest {
         List<String> shifts = circularShift.getShifts("");
         assertTrue(shifts != null);
         assertTrue(shifts.size() == 1);
-        assertTrue(shifts.contains(""));
+        assertTrue(shifts.remove(""));
     }
 
     // Testing shifts for words with letters and numbers
@@ -83,11 +83,11 @@ public class CircularShiftTest {
         List<String> shifts = circularShift.getShifts("nuMb3Rs r g00d n0t evIl");
         
         assertTrue(shifts.size() == 5);
-        assertTrue(shifts.contains("Numb3rs R G00d N0t Evil"));
-        assertTrue(shifts.contains("R G00d N0t Evil Numb3rs"));
-        assertTrue(shifts.contains("G00d N0t Evil Numb3rs R"));
-        assertTrue(shifts.contains("N0t Evil Numb3rs R G00d"));
-        assertTrue(shifts.contains("Evil Numb3rs R G00d N0t"));
+        assertTrue(shifts.remove("Numb3rs R G00d N0t Evil"));
+        assertTrue(shifts.remove("R G00d N0t Evil Numb3rs"));
+        assertTrue(shifts.remove("G00d N0t Evil Numb3rs R"));
+        assertTrue(shifts.remove("N0t Evil Numb3rs R G00d"));
+        assertTrue(shifts.remove("Evil Numb3rs R G00d N0t"));
 
     }
 
@@ -101,9 +101,9 @@ public class CircularShiftTest {
     	List<String> shifts = circularShift.getShifts("tEst this Circular shIft");
         
         assertTrue(shifts.size() == 3);
-        assertTrue(shifts.contains("Test This Circular shift"));
-        assertTrue(shifts.contains("This Circular shift Test"));
-        assertTrue(shifts.contains("Circular shift Test This"));
+        assertTrue(shifts.remove("Test This Circular shift"));
+        assertTrue(shifts.remove("This Circular shift Test"));
+        assertTrue(shifts.remove("Circular shift Test This"));
     }
     
     @Test
@@ -137,11 +137,11 @@ public class CircularShiftTest {
         
         CircularShift circularShift = CircularShift.create(wordsToIgnore);
         List<String> shifts = circularShift.getShifts("");
-        assertFalse(shifts.contains(""));
+        assertFalse(shifts.remove(""));
         assertTrue(shifts.size() == 0);
 
         shifts = circularShift.getShifts("       ");
-        assertFalse(shifts.contains(" "));
+        assertFalse(shifts.remove(" "));
         assertTrue(shifts.size() == 0);
     }
 }

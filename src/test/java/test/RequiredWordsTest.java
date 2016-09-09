@@ -66,21 +66,21 @@ public class RequiredWordsTest {
     	RequiredWords requiredWords = RequiredWords.create();
     	String word = "ExAmPLe";
     	requiredWords.addWord(word);
-    	assertTrue( requiredWords.contains(word) );
+    	assertTrue( requiredWords.removeWord(word) );
     }
     
     @Test
     public void testContainsNotAddedNormalWord() {
     	
     	RequiredWords requiredWords = RequiredWords.create();
-    	assertFalse( requiredWords.contains("ExAmPLe") );
+    	assertFalse( requiredWords.removeWord("ExAmPLe") );
     }
     
     @Test(expected=AssertionError.class)
     public void testContainsNullWord() {
     	
     	RequiredWords requiredWords = RequiredWords.create();
-    	requiredWords.contains(null);
+    	requiredWords.removeWord(null);
     }
     
     @Test
