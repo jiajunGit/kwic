@@ -66,21 +66,21 @@ public class RequiredWordsTest {
     	RequiredWords requiredWords = RequiredWords.create();
     	String word = "ExAmPLe";
     	requiredWords.addWord(word);
-    	assertTrue( requiredWords.removeWord(word) );
+    	assertTrue( requiredWords.contains(word) );
     }
     
     @Test
     public void testContainsNotAddedNormalWord() {
     	
     	RequiredWords requiredWords = RequiredWords.create();
-    	assertFalse( requiredWords.removeWord("ExAmPLe") );
+    	assertFalse( requiredWords.contains("ExAmPLe") );
     }
     
     @Test(expected=AssertionError.class)
     public void testContainsNullWord() {
     	
     	RequiredWords requiredWords = RequiredWords.create();
-    	requiredWords.removeWord(null);
+    	requiredWords.contains(null);
     }
     
     @Test
@@ -115,8 +115,47 @@ public class RequiredWordsTest {
     	assertTrue(requiredWords.size() == 0);
     }
     
-    // Existence
-    // Read the input & store
+    @Test
+    public void testNumbersSpecialCharacter() {
+        
+        RequiredWords requiredWords = RequiredWords.create();
+        requiredWords.addWord("1234");
+        requiredWords.addWord("1n2u3m4");
+        requiredWords.addWord("Numb3r");
+        requiredWords.addWord("");
+        requiredWords.addWord("+");
+        requiredWords.addWord(" ");
+        
+        assertTrue(requiredWords.size() == 5);
+        assertTrue(requiredWords.contains("1234"));
+        assertTrue(requiredWords.removeWord("1n2u3m4"));
+        assertTrue(requiredWords.contains(" "));
+        assertTrue(requiredWords.removeWord("+"));
+        assertFalse(requiredWords.removeWord("+"));
+        assertFalse(requiredWords.removeWord("number"));
+        assertFalse(requiredWords.removeWord("    "));
+        assertFalse(requiredWords.removeWord(""));
+        assertFalse(requiredWords.removeWord("Number"));
+        assertFalse(requiredWords.removeWord("numb3r"));
+        
+    }
     
+    @Test
+    public void testDoubleRemoveAdd() {
+        
+        RequiredWords requiredWords = RequiredWords.create();
+        requiredWords.addWord("1234");
+        requiredWords.addWord("1234");
+        requiredWords.addWord("234");
+        
+        assertTrue(requiredWords.size() == 2);
+        assertTrue(requiredWords.contains("1234"));
+        assertTrue(requiredWords.removeWord("1234"));
+        assertFalse(requiredWords.contains("1234"));
+        assertTrue(requiredWords.removeWord("234"));
+        assertFalse(requiredWords.removeWord("234"));
+        
+        
+    }
 
 }

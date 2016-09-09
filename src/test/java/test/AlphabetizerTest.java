@@ -98,6 +98,44 @@ public class AlphabetizerTest {
         assertEquals("??@@", output.get(5));
     }
     
+    @Test(expected=NullPointerException.class) 
+    public void testNullLines() throws Exception {
+        Alphabetizer alphabetizer = Alphabetizer.create();
+
+        ArrayList<String> lines = new ArrayList<String>();
+        lines.add(null);
+        lines.add("null");
+        alphabetizer.addLines(lines);
+        List<String> output = alphabetizer.getSortedLines();
+        assertTrue(output.size() == 2);
+        assertEquals(null, output.get(0));
+        assertEquals("null", output.get(1));
+    }
+    
+    // All together now
+    @Test
+    public void testCompleteInput() throws Exception {
+        Alphabetizer alphabetizer = Alphabetizer.create();
+
+        ArrayList<String> lines = new ArrayList<String>();
+        lines.add(".n.0.");
+        lines.add("S0 m34N!");
+        lines.add("sh0rt t3s+");
+        lines.add("short test");
+        lines.add("1337");
+        lines.add("^.^");
+        alphabetizer.addLines(lines);
+        List<String> output = alphabetizer.getSortedLines();
+        assertTrue(output.size() == 6);
+        
+        assertEquals(".n.0.", output.get(0));
+        assertEquals("1337", output.get(1));
+        assertEquals("S0 m34N!", output.get(2));
+        assertEquals("^.^", output.get(3));
+        assertEquals("sh0rt t3s+", output.get(4));
+        assertEquals("short test", output.get(5));
+    }
+    
     @Test
     public void testCreateOutput() {
     	

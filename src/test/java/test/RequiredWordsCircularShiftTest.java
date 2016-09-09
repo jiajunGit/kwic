@@ -147,4 +147,26 @@ public class RequiredWordsCircularShiftTest {
         assertTrue(shiftedLines.get(1).equals("Gretel: Gretel: Gretel:"));
         assertTrue(shiftedLines.get(2).equals("Gretel: Gretel: Gretel:"));
 	}
+	
+	@Test
+	public void testNumbersSpecial() {
+	    RequiredWords requiredWords = RequiredWords.create();
+	    requiredWords.addWord("F1rs+");
+        requiredWords.addWord("s3c0nD");
+        requiredWords.addWord(" ");
+	    ReadableWordsCollection ignoredWords = WordsToIgnore.create();
+        RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords, ignoredWords);
+        List<String> shiftedLines = shifter.getShifts("Headache F1rs+ Sleepy s3c0nD Tired");
+        
+
+        HashSet<String> testSet = new HashSet<String>();
+        for( String line : shiftedLines ) {
+            testSet.add(line);
+        }
+        
+        assertTrue(testSet.size() == 2);
+        assertTrue(testSet.remove("F1rs+ Sleepy S3c0nD Tired Headache"));
+        assertTrue(testSet.remove("S3c0nD Tired Headache F1rs+ Sleepy"));
+    
+	}
 }
