@@ -17,6 +17,7 @@ public class Alphabetizer {
     
     public void addLines(List<String> lines) {
         for (String str : lines) {
+        	assert(str != null);
             _lines.add(str);
         }
     }
