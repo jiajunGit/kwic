@@ -120,12 +120,12 @@ public class CircularShiftTest {
     	List<String> shifts = circularShift.getShifts("HANSEL &  GRETEL: WARRIORS OF WITCHCRAFT");
     	
     	assertTrue(shifts.size() == 6);
-    	assertTrue(shifts.contains("& Gretel: Warriors of Witchcraft Hansel"));
-    	assertTrue(shifts.contains("Gretel: Warriors of Witchcraft Hansel &"));
-    	assertTrue(shifts.contains("Gretel: Warriors of Witchcraft Hansel &"));
-    	assertTrue(shifts.contains("Hansel & Gretel: Warriors of Witchcraft"));
-    	assertTrue(shifts.contains("Warriors of Witchcraft Hansel & Gretel:"));
-    	assertTrue(shifts.contains("Witchcraft Hansel & Gretel: Warriors of"));
+    	assertTrue(shifts.remove("& Gretel: Warriors of Witchcraft Hansel"));
+    	assertTrue(shifts.remove("Gretel: Warriors of Witchcraft Hansel &"));
+    	assertTrue(shifts.remove("Gretel: Warriors of Witchcraft Hansel &"));
+    	assertTrue(shifts.remove("Hansel & Gretel: Warriors of Witchcraft"));
+    	assertTrue(shifts.remove("Warriors of Witchcraft Hansel & Gretel:"));
+    	assertTrue(shifts.remove("Witchcraft Hansel & Gretel: Warriors of"));
     }
     
     @Test
