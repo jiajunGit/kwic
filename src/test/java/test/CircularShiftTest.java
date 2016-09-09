@@ -137,11 +137,9 @@ public class CircularShiftTest {
         
         CircularShift circularShift = CircularShift.create(wordsToIgnore);
         List<String> shifts = circularShift.getShifts("");
-        assertFalse(shifts.remove(""));
         assertTrue(shifts.size() == 0);
 
         shifts = circularShift.getShifts("       ");
-        assertFalse(shifts.remove(" "));
         assertTrue(shifts.size() == 0);
     }
 }

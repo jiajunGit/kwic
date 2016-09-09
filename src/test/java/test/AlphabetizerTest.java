@@ -98,7 +98,7 @@ public class AlphabetizerTest {
         assertEquals("??@@", output.get(5));
     }
     
-    @Test(expected=NullPointerException.class) 
+    @Test(expected=AssertionError.class) 
     public void testNullLines() throws Exception {
         Alphabetizer alphabetizer = Alphabetizer.create();
 
@@ -106,10 +106,6 @@ public class AlphabetizerTest {
         lines.add(null);
         lines.add("null");
         alphabetizer.addLines(lines);
-        List<String> output = alphabetizer.getSortedLines();
-        assertTrue(output.size() == 2);
-        assertEquals(null, output.get(0));
-        assertEquals("null", output.get(1));
     }
     
     // All together now

@@ -64,13 +64,8 @@ public class RequiredWordsCircularShiftTest {
     	RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords, ignoredWords);
 		List<String> shiftedLines = shifter.getShifts("Green");
 		
-		HashSet<String> testSet = new HashSet<String>();
-		for( String line : shiftedLines ) {
-			testSet.add(line);
-		}
-		
-		assertTrue( testSet.size() == 1 );
-		assertTrue( testSet.remove("Green") );
+		assertTrue( shiftedLines.size() == 1 );
+		assertTrue( shiftedLines.remove("Green") );
 	}
 	
 	@Test
@@ -83,14 +78,9 @@ public class RequiredWordsCircularShiftTest {
     	RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords, ignoredWords);
 		List<String> shiftedLines = shifter.getShifts("Green Day");
 		
-		HashSet<String> testSet = new HashSet<String>();
-		for( String line : shiftedLines ) {
-			testSet.add(line);
-		}
-		
-		assertTrue( testSet.size() == 2 );
-		assertTrue( testSet.remove("Green Day") );
-		assertTrue( testSet.remove("Day Green") );
+		assertTrue( shiftedLines.size() == 2 );
+		assertTrue( shiftedLines.remove("Green Day") );
+		assertTrue( shiftedLines.remove("Day Green") );
 	}
 	
 	@Test
@@ -103,14 +93,9 @@ public class RequiredWordsCircularShiftTest {
     	RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords, ignoredWords);
 		List<String> shiftedLines = shifter.getShifts("Green and Day");
 		
-		HashSet<String> testSet = new HashSet<String>();
-		for( String line : shiftedLines ) {
-			testSet.add(line);
-		}
-		
-		assertTrue( testSet.size() == 2 );
-		assertTrue( testSet.remove("Green And Day") );
-		assertTrue( testSet.remove("Day Green And") );
+		assertTrue( shiftedLines.size() == 2 );
+		assertTrue( shiftedLines.remove("Green And Day") );
+		assertTrue( shiftedLines.remove("Day Green And") );
 	}
 	
 	@Test
@@ -123,14 +108,9 @@ public class RequiredWordsCircularShiftTest {
     	RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords, ignoredWords);
 		List<String> shiftedLines = shifter.getShifts("tEst this Circular shIft");
 		
-		HashSet<String> testSet = new HashSet<String>();
-		for( String line : shiftedLines ) {
-			testSet.add(line);
-		}
-		
-		assertTrue(testSet.size() == 2);
-        assertTrue(testSet.remove("Test This Circular Shift"));
-        assertTrue(testSet.remove("Circular Shift Test This"));
+		assertTrue(shiftedLines.size() == 2);
+        assertTrue(shiftedLines.remove("Test This Circular Shift"));
+        assertTrue(shiftedLines.remove("Circular Shift Test This"));
 	}
 	
 	@Test
@@ -158,15 +138,9 @@ public class RequiredWordsCircularShiftTest {
         RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords, ignoredWords);
         List<String> shiftedLines = shifter.getShifts("Headache F1rs+ Sleepy s3c0nD Tired");
         
-
-        HashSet<String> testSet = new HashSet<String>();
-        for( String line : shiftedLines ) {
-            testSet.add(line);
-        }
-        
-        assertTrue(testSet.size() == 2);
-        assertTrue(testSet.remove("F1rs+ Sleepy S3c0nD Tired Headache"));
-        assertTrue(testSet.remove("S3c0nD Tired Headache F1rs+ Sleepy"));
+        assertTrue(shiftedLines.size() == 2);
+        assertTrue(shiftedLines.remove("F1rs+ Sleepy S3c0nd Tired Headache"));
+        assertTrue(shiftedLines.remove("S3c0nd Tired Headache F1rs+ Sleepy"));
     
 	}
 }
