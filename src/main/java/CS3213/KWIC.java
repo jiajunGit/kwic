@@ -54,7 +54,7 @@ public class KWIC {
 		}
 	}
 	
-	private void readRequiredWords( Scanner reader, ModifiableWordsCollection inputs, ReadableWordsCollection ignoreWords ) {
+	private void readRequiredWords( Scanner reader, ModifiableWordsCollection inputs, final ReadableWordsCollection ignoreWords ) {
 		
 		assert(reader != null && inputs != null && ignoreWords != null);
 		

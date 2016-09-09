@@ -95,12 +95,14 @@ public class WordsToIgnoreTest {
         wordsToIgnore.addWord("@");
         wordsToIgnore.addWord("nu^*rology");
         wordsToIgnore.addWord("}}work{{{\"");
-        
+        wordsToIgnore.addWord(" ");
+
         assertTrue(wordsToIgnore.contains("@"));
         assertTrue(wordsToIgnore.contains("nu^*rology"));
         assertTrue(wordsToIgnore.contains("}}work{{{\""));
         assertFalse(wordsToIgnore.contains("nurology"));
         assertFalse(wordsToIgnore.contains("work"));
+        assertTrue(wordsToIgnore.contains(" "));
         
         wordsToIgnore.removeWord("nu^*rology");
         assertFalse(wordsToIgnore.contains("nu^*rology"));
