@@ -1,8 +1,8 @@
 package CS3213;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -22,49 +22,41 @@ public class CircularShift implements AbstractShift {
     }
     
     public List<String> getShifts( String line ) {
-        
-        assert(line != null);
-        
-        line = line.toLowerCase();
+    	
+    	assert(line != null);
+    	
+    	line = line.toLowerCase();
         String[] words = line.split(DELIMITER);
         
-        LinkedList<Integer> filteredShifts = new LinkedList<Integer>();
-        for( int i = 0, length = words.length; i < length; ++i ){
-            if( !isShiftStartingWithIgnoredWord(words, i) ) {
-                filteredShifts.add(i);
-            }
+        if( words.length <= 0 ){
+        	return new ArrayList<String>();
         }
         
-        words = capitalizeWordsNotIgnoredInLine(words);
-        
-        ArrayList<String> resultList = new ArrayList<String>(filteredShifts.size());
-        Iterator<Integer> itr = filteredShifts.iterator();
-        String shiftedLine;
-        while( itr.hasNext() ){
-        	shiftedLine = getShiftedLine( itr.next(), words );
-        	if(shiftedLine != null) {
-        		resultList.add(shiftedLine);
-        	}
+        String[] shifts = new String[words.length];
+        shifts[0] = line;
+
+        for (int i=1;i<words.length;i++) {
+            shifts[i] = getShiftedLine(i, words);
         }
-        
-        return resultList;
+
+        String[] filteredShifts = getShiftsWithoutIgnoredWordLeading(shifts);
+        for (int i=0;i<filteredShifts.length;i++) {
+            filteredShifts[i] = capitalizeWordsNotIgnoredInShift(filteredShifts[i]);
+        }
+
+        return new ArrayList<String>(Arrays.asList(filteredShifts));
     }
 
     private String getShiftedLine(int index, String[] words) {
-    	
-    	StringBuilder builder = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
 
         for (int i=index;i<words.length;i++) {
-            if(words[i] != null) {
-	        	builder.append(words[i]);
-	            builder.append(DELIMITER);
-            }
+            builder.append(words[i]);
+            builder.append(DELIMITER);
         }
         for (int i=0;i<index;i++) {
-        	if(words[i] != null) {
-	            builder.append(words[i]);
-	            builder.append(DELIMITER);
-        	}
+            builder.append(words[i]);
+            builder.append(DELIMITER);
         }
         if (builder.length() > 0) {
             builder.deleteCharAt(builder.length() - 1);
@@ -73,26 +65,41 @@ public class CircularShift implements AbstractShift {
         return builder.toString();
     }
 
-    private boolean isShiftStartingWithIgnoredWord( String[] line, int firstWordIndex ) {
-        return _wordsToIgnore.contains(line[firstWordIndex]);
-    }
+    private String[] getShiftsWithoutIgnoredWordLeading(String[] shifts) {
+        List<String> shiftList = new ArrayList<String>(Arrays.asList(shifts));
 
-    private String[] capitalizeWordsNotIgnoredInLine(String[] line) {
-        
-        ArrayList<String> newLine = new ArrayList<String>(line.length);
-        String word;
-        for( int i = 0, size = line.length; i < size; ++i ) {
-            
-            word = line[i];
-            if (_wordsToIgnore.contains(word)) {
-            	newLine.add(word);
-            } else if (word.trim().isEmpty()) {
-            	newLine.add(null);
-            } else {
-            	newLine.add( Character.toUpperCase(word.charAt(0)) + (word.substring(1)) );
+        Iterator<String> iter = shiftList.iterator();
+        while (iter.hasNext()) {
+            if (isShiftStartingWithIgnoredWord(iter.next())) {
+                iter.remove();
             }
         }
-        
-        return newLine.toArray(new String[newLine.size()]);
+
+        return shiftList.toArray(new String[shiftList.size()]);
+    }
+
+    private boolean isShiftStartingWithIgnoredWord(String line) {
+        return _wordsToIgnore.contains(line.split(DELIMITER)[0]);
+    }
+
+    private String capitalizeWordsNotIgnoredInShift(String shift) {
+        String[] words = shift.split(DELIMITER);
+        StringBuilder builder = new StringBuilder();
+
+        for (String str : words) {
+            if (_wordsToIgnore.contains(str)) {
+                builder.append(str);
+            } else if (str.trim().isEmpty()) {
+                continue;
+            } else {
+                builder.append(Character.toUpperCase(str.charAt(0))).append(str.substring(1));
+            }
+            builder.append(DELIMITER);
+        }
+        if (builder.length() > 0) {
+            builder.deleteCharAt(builder.length() - 1);
+        }
+
+        return builder.toString();
     }
 }
