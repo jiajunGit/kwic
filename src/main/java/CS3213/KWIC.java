@@ -33,7 +33,7 @@ public class KWIC {
 		}
 	}
 	
-	private void readInputs( Scanner reader, ModifiableWordsCollection inputs, Conditions condition ) {
+	private void readInputs( Scanner reader, WordsCollection inputs, Conditions condition ) {
 		
 		assert(reader != null && inputs != null && condition != null);
 		
@@ -54,7 +54,7 @@ public class KWIC {
 		}
 	}
 	
-	private void readRequiredWords( Scanner reader, ModifiableWordsCollection inputs, final ReadableWordsCollection ignoreWords ) {
+	private void readRequiredWords( Scanner reader, WordsCollection inputs, final WordsCollection ignoreWords ) {
 		
 		assert(reader != null && inputs != null && ignoreWords != null);
 		
@@ -91,11 +91,11 @@ public class KWIC {
 		System.out.println(INPUT_INTRO);
 		readInputs(sc, inputs, new Conditions());
 		
-		WordsToIgnore wordsToIgnore = WordsToIgnore.create();
+		WordsCollection wordsToIgnore = WordsCollection.create();
 		System.out.println(IGNORE_WORDS_INTRO);
 		readInputs(sc, wordsToIgnore, new Conditions());
 		
-		RequiredWords requiredWords = RequiredWords.create();
+		WordsCollection requiredWords = WordsCollection.create();
 		System.out.println(REQUIRED_WORDS_INTRO);
 		readRequiredWords(sc, requiredWords, wordsToIgnore);
 		

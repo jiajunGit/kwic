@@ -5,7 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import CS3213.CircularShift;
-import CS3213.WordsToIgnore;
+import CS3213.WordsCollection;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ public class CircularShiftTest {
     @Test
     public void testGetShiftsOneWord() {
 
-    	WordsToIgnore wordsToIgnore = WordsToIgnore.create();
+    	WordsCollection wordsToIgnore = WordsCollection.create();
         CircularShift circularShift = CircularShift.create(wordsToIgnore);
         List<String> shifts = circularShift.getShifts("shift");
         assertTrue( shifts != null );
@@ -30,7 +30,7 @@ public class CircularShiftTest {
     @Test
     public void testGetShiftsMultiWord() {
 
-    	WordsToIgnore wordsToIgnore = WordsToIgnore.create();
+    	WordsCollection wordsToIgnore = WordsCollection.create();
         CircularShift circularShift = CircularShift.create(wordsToIgnore);
         List<String> shifts = circularShift.getShifts("tEst this Circular shIft");
         
@@ -44,7 +44,7 @@ public class CircularShiftTest {
     @Test(expected=AssertionError.class)
     public void testGetShiftsNullLine() {
 
-        WordsToIgnore wordsToIgnore = WordsToIgnore.create();
+        WordsCollection wordsToIgnore = WordsCollection.create();
         CircularShift circularShift = CircularShift.create(wordsToIgnore);
         circularShift.getShifts(null);
     }
@@ -52,7 +52,7 @@ public class CircularShiftTest {
     @Test
     public void testGetShiftsNullWord() {
 
-        WordsToIgnore wordsToIgnore = WordsToIgnore.create();
+        WordsCollection wordsToIgnore = WordsCollection.create();
         CircularShift circularShift = CircularShift.create(wordsToIgnore);
         wordsToIgnore.addWord("");
 
@@ -66,7 +66,7 @@ public class CircularShiftTest {
     @Test
     public void testGetShiftsEmptyLine() {
 
-    	WordsToIgnore wordsToIgnore = WordsToIgnore.create();
+    	WordsCollection wordsToIgnore = WordsCollection.create();
         CircularShift circularShift = CircularShift.create(wordsToIgnore);
         List<String> shifts = circularShift.getShifts("");
         assertTrue(shifts != null);
@@ -78,7 +78,7 @@ public class CircularShiftTest {
     @Test
     public void testLetterNumberCircularShifts() throws Exception {
     	
-    	WordsToIgnore wordsToIgnore = WordsToIgnore.create();
+    	WordsCollection wordsToIgnore = WordsCollection.create();
         CircularShift circularShift = CircularShift.create(wordsToIgnore);
         List<String> shifts = circularShift.getShifts("nuMb3Rs r g00d n0t evIl");
         
@@ -94,7 +94,7 @@ public class CircularShiftTest {
     @Test
     public void testGetShiftsRandomCases() {
     	
-    	WordsToIgnore wordsToIgnore = WordsToIgnore.create();
+    	WordsCollection wordsToIgnore = WordsCollection.create();
     	wordsToIgnore.addWord("shift");
     	
     	CircularShift circularShift = CircularShift.create(wordsToIgnore);
@@ -109,7 +109,7 @@ public class CircularShiftTest {
     @Test
     public void testGetShiftWithEmptyWord() {
     	
-    	WordsToIgnore wordsToIgnore = WordsToIgnore.create();
+    	WordsCollection wordsToIgnore = WordsCollection.create();
     	wordsToIgnore.addWord("of");
     	wordsToIgnore.addWord("the");
     	wordsToIgnore.addWord("and");
@@ -131,7 +131,7 @@ public class CircularShiftTest {
     @Test
     public void testEmptyIgnoreEmptyLine() {
         
-        WordsToIgnore wordsToIgnore = WordsToIgnore.create();
+        WordsCollection wordsToIgnore = WordsCollection.create();
         wordsToIgnore.addWord("");
         wordsToIgnore.addWord(" ");
         

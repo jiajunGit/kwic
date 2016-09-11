@@ -10,13 +10,13 @@ import java.util.List;
  */
 public class CircularShift implements AbstractShift {
     private static final String DELIMITER = " ";
-    private ReadableWordsCollection _wordsToIgnore;
+    private WordsCollection _wordsToIgnore;
 
-    private CircularShift( ReadableWordsCollection wordsToIgnore ) {
+    private CircularShift( WordsCollection wordsToIgnore ) {
         _wordsToIgnore = wordsToIgnore;
     }
     
-    public static CircularShift create( ReadableWordsCollection wordsToIgnore ) {
+    public static CircularShift create( WordsCollection wordsToIgnore ) {
     	assert( wordsToIgnore != null );
         return new CircularShift(wordsToIgnore);
     }

@@ -2,23 +2,20 @@ package test;
 
 import static org.junit.Assert.assertTrue;
 
-import java.util.HashSet;
 import java.util.List;
 
 import org.junit.Test;
 
-import CS3213.ReadableWordsCollection;
-import CS3213.RequiredWords;
 import CS3213.RequiredWordsCircularShift;
-import CS3213.WordsToIgnore;
+import CS3213.WordsCollection;
 
 public class RequiredWordsCircularShiftTest {
 
 	@Test
     public void testCreateWithNonNullRequiredandIgnoreWords() {
         
-		ReadableWordsCollection requiredWords = RequiredWords.create();
-		ReadableWordsCollection ignoredWords = WordsToIgnore.create();
+		WordsCollection ignoredWords = WordsCollection.create();
+		WordsCollection requiredWords = WordsCollection.create();
     	RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords, ignoredWords);
     	assertTrue( shifter != null );
     }
@@ -26,22 +23,22 @@ public class RequiredWordsCircularShiftTest {
 	@Test(expected=AssertionError.class)
 	public void testCreateWithNullIgnoreWords() {
 		
-		ReadableWordsCollection requiredWords = RequiredWords.create();
+		WordsCollection requiredWords = WordsCollection.create();
 		RequiredWordsCircularShift.create(requiredWords, null);
 	}
 	
 	@Test(expected=AssertionError.class)
 	public void testCreateWithNullRequiredWords() {
-		ReadableWordsCollection ignoredWords = WordsToIgnore.create();
+		WordsCollection ignoredWords = WordsCollection.create();
 		RequiredWordsCircularShift.create(null, ignoredWords);
 	}
 	
 	@Test(expected=AssertionError.class)
 	public void testGetShiftsForNullWords() {
 		
-		RequiredWords requiredWords = RequiredWords.create();
+		WordsCollection requiredWords = WordsCollection.create();
 		requiredWords.addWord("green");
-		ReadableWordsCollection ignoredWords = WordsToIgnore.create();
+		WordsCollection ignoredWords = WordsCollection.create();
     	RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords, ignoredWords);
     	shifter.getShifts(null);
 	}
@@ -49,8 +46,8 @@ public class RequiredWordsCircularShiftTest {
 	@Test(expected=AssertionError.class)
 	public void testGetShiftsWithoutRequiredWords() {
 		
-		ReadableWordsCollection requiredWords = RequiredWords.create();
-		ReadableWordsCollection ignoredWords = WordsToIgnore.create();
+		WordsCollection requiredWords = WordsCollection.create();
+		WordsCollection ignoredWords = WordsCollection.create();
     	RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords, ignoredWords);
     	shifter.getShifts("ThIs Is An ExAmPle LiNe");
 	}
@@ -58,9 +55,9 @@ public class RequiredWordsCircularShiftTest {
 	@Test
 	public void testGetShiftsWithOneRequiredWord() {
 		
-		RequiredWords requiredWords = RequiredWords.create();
+		WordsCollection requiredWords = WordsCollection.create();
 		requiredWords.addWord("Green");
-		ReadableWordsCollection ignoredWords = WordsToIgnore.create();
+		WordsCollection ignoredWords = WordsCollection.create();
     	RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords, ignoredWords);
 		List<String> shiftedLines = shifter.getShifts("Green");
 		
@@ -71,10 +68,10 @@ public class RequiredWordsCircularShiftTest {
 	@Test
 	public void testGetShiftsForLineWithMoreThanOneRequiredWord() {
 		
-		RequiredWords requiredWords = RequiredWords.create();
+		WordsCollection requiredWords = WordsCollection.create();
 		requiredWords.addWord("Green");
 		requiredWords.addWord("Day");
-		ReadableWordsCollection ignoredWords = WordsToIgnore.create();
+		WordsCollection ignoredWords = WordsCollection.create();
     	RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords, ignoredWords);
 		List<String> shiftedLines = shifter.getShifts("Green Day");
 		
@@ -86,10 +83,10 @@ public class RequiredWordsCircularShiftTest {
 	@Test
 	public void testGetShiftsForLineWithMoreThanOneRequiredWordAndNonRequiredWords() {
 		
-		RequiredWords requiredWords = RequiredWords.create();
+		WordsCollection requiredWords = WordsCollection.create();
 		requiredWords.addWord("Green");
 		requiredWords.addWord("Day");
-		ReadableWordsCollection ignoredWords = WordsToIgnore.create();
+		WordsCollection ignoredWords = WordsCollection.create();
     	RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords, ignoredWords);
 		List<String> shiftedLines = shifter.getShifts("Green and Day");
 		
@@ -101,10 +98,10 @@ public class RequiredWordsCircularShiftTest {
 	@Test
 	public void testGetShiftsForLineWithRequiredAndNonRequiredWordsOfDifferentCases() {
 		
-		RequiredWords requiredWords = RequiredWords.create();
+		WordsCollection requiredWords = WordsCollection.create();
 		requiredWords.addWord("tEst");
 		requiredWords.addWord("Circular");
-		ReadableWordsCollection ignoredWords = WordsToIgnore.create();
+		WordsCollection ignoredWords = WordsCollection.create();
     	RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords, ignoredWords);
 		List<String> shiftedLines = shifter.getShifts("tEst this Circular shIft");
 		
@@ -116,9 +113,9 @@ public class RequiredWordsCircularShiftTest {
 	@Test
 	public void testGetShiftsForLineWithEmptyWord() {
 		
-		RequiredWords requiredWords = RequiredWords.create();
+		WordsCollection requiredWords = WordsCollection.create();
 		requiredWords.addWord("GRETEL:");
-		ReadableWordsCollection ignoredWords = WordsToIgnore.create();
+		WordsCollection ignoredWords = WordsCollection.create();
     	RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords, ignoredWords);
 		List<String> shiftedLines = shifter.getShifts("GRETEL:  GRETEL:  GRETEL:");
 		
@@ -130,11 +127,11 @@ public class RequiredWordsCircularShiftTest {
 	
 	@Test
 	public void testNumbersSpecial() {
-	    RequiredWords requiredWords = RequiredWords.create();
+		WordsCollection requiredWords = WordsCollection.create();
 	    requiredWords.addWord("F1rs+");
         requiredWords.addWord("s3c0nD");
         requiredWords.addWord(" ");
-	    ReadableWordsCollection ignoredWords = WordsToIgnore.create();
+        WordsCollection ignoredWords = WordsCollection.create();
         RequiredWordsCircularShift shifter = RequiredWordsCircularShift.create(requiredWords, ignoredWords);
         List<String> shiftedLines = shifter.getShifts("Headache F1rs+ Sleepy s3c0nD Tired");
         
