@@ -40,11 +40,12 @@ public class CircularShift implements AbstractShift {
         }
 
         String[] filteredShifts = getShiftsWithoutIgnoredWordLeading(shifts);
+        ArrayList<String> result = new ArrayList<String>(filteredShifts.length);
         for (int i=0;i<filteredShifts.length;i++) {
-            filteredShifts[i] = capitalizeWordsNotIgnoredInShift(filteredShifts[i]);
+        	result.add( capitalizeWordsNotIgnoredInShift(filteredShifts[i]) );
         }
 
-        return new ArrayList<String>(Arrays.asList(filteredShifts));
+        return result;
     }
 
     private String getShiftedLine(int index, String[] words) {
@@ -79,7 +80,13 @@ public class CircularShift implements AbstractShift {
     }
 
     private boolean isShiftStartingWithIgnoredWord(String line) {
-        return _wordsToIgnore.contains(line.split(DELIMITER)[0]);
+    	
+    	String []words = line.split(DELIMITER);
+    	
+    	if(words.length > 0){
+    		return _wordsToIgnore.contains(line.split(DELIMITER)[0]);
+    	}
+        return true;
     }
 
     private String capitalizeWordsNotIgnoredInShift(String shift) {
